@@ -83,4 +83,5 @@ window.onload=function(){
   var marker=new google.maps.Marker({position: location,map: map,});
 }
 </script>
+<script async src="https://maps.googleapis.com/maps/api/js?key={{env('GOOGLE_MAPS_KEY')}}ー&callback=initMap"></script>
 @endsection

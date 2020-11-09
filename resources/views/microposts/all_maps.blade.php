@@ -3,7 +3,8 @@
 @section('content')
 
 <div class="allmap"  id="map"></div>
-
+      
+<script async src="https://maps.googleapis.com/maps/api/js?key={{ getenv('GOOGLE_MAPS_KEY') }}ー&callback=initMap"></script>
 <script>
 window.onload=function(){
   var markerData = JSON.parse(@json($data));//phpでjson化したものを再度配列に
@@ -51,4 +52,5 @@ window.onload=function(){
   map.fitBounds(bounds,5);
 }
 </script>
+
 @endsection

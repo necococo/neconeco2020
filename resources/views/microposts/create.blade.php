@@ -35,9 +35,9 @@
         <div class="panel-body">
             <div class="col-xs-12 col-md-3 form-data">
                 <br>
-                {!! Form::open(['route' => ['microposts.store'], 'method' => 'POST', 'files' => true]) !!}   
-                    {!! Form::label('photo', '猫写真を選択(<=5MB), AIによる猫判定あり') !!}
-                    {!! Form::file('photo',null,['class' => 'form-control']) !!}    
+                {!! Form::open(['route' => ['microposts.store'], 'method' => 'POST', 'files' => true]) !!}
+                    {!! Form::label('file', '猫写真を選択(<=5MB), AIによる猫判定あり') !!}
+                    {!! Form::file('file',null,['class' => 'form-control']) !!}  
                     <br> 
                     <div class="form-group">
                         {!! Form::label('search_tag', '検索タグ(任意)') !!}

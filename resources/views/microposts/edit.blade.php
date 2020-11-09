@@ -110,4 +110,5 @@ google.maps.event.addListener(map, 'center_changed', function(){
   });
 }
 </script>
+<script async src="https://maps.googleapis.com/maps/api/js?key={{env('GOOGLE_MAPS_KEY')}}ー&callback=initMap"></script>
 @endsection
