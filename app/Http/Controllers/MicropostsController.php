@@ -140,9 +140,9 @@ class MicropostsController extends Controller
             $micropost->save();
             return redirect()->route('microposts.show', ['id' => \Auth::id(), 'micropost' =>$micropost ])->with('success','ファイルはアップロードされました。');
         }else {
-            $original_error_message = "これはおそらく猫ではありませんね。猫写真をアップしてください。";
+            $cat_error = "この写真はおそらく猫ではありませんね。猫写真をアップしてください。";
             // return redirect()->back(['original_error_message'=>$original_error_message]);
-            return redirect()->back();
+            return redirect()->back()->with('cat_error',$cat_error);
         }
     }
     
@@ -187,8 +187,5 @@ class MicropostsController extends Controller
         // dd($data);
         return view('microposts.all_maps', ['data' => $data]);
     }
-    
    
-    
-    
 }
