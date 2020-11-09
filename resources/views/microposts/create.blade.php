@@ -36,11 +36,11 @@
             <div class="col-xs-12 col-md-3 form-data">
                 <br>
                 {!! Form::open(['route' => ['microposts.store'], 'method' => 'POST', 'files' => true]) !!}   
-                    {!! Form::label('photo', 'Neco_photo_file (写真は必須で5Mb以下です)') !!}
+                    {!! Form::label('photo', '猫写真を選択(<=5MB), AIによる猫判定あり') !!}
                     {!! Form::file('photo',null,['class' => 'form-control']) !!}    
                     <br> 
                     <div class="form-group">
-                        {!! Form::label('search_tag', '検索用タグを入力(任意)') !!}
+                        {!! Form::label('search_tag', '検索タグ(任意)') !!}
                         {!! Form::text('search_tag', null,['class' => 'form-control']) !!}    
                     </div>
                     <br>

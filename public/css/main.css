@@ -1,27 +1,27 @@
-a.float {float:left}
+a .float {float:left}
 
 ul {padding-left:0px;}
 
 #search{line-height:12px;}
 
-a.navbar-brand {padding-top:18px; padding-left:25px; padding-bottom:10px; padding-right:5px;}
+a .navbar-brand {padding-top:18px; padding-left:25px; padding-bottom:10px; padding-right:5px;}
 
 .navbar-inverse .navbar-brand {color:#FFF;}
 
 .navbar-inverse .navbar-nav>li>a {color:#D3D3D3;}
 
-div.container-fluid{padding-left:5px ;padding-right: 5px;}
+div .container-fluid{padding-left:5px ;padding-right: 5px;}
 
-button.navbar-toggle{margin-top:12px; margin-bottom:12px;}
+button .navbar-toggle{margin-top:12px; margin-bottom:12px;}
 
 
-div.panel-body {padding-left:5px;}
+div .panel-body {padding-left:5px;}
 
-div.form-data {padding-left:0px;}
+div .form-data {padding-left:0px;}
 
 div.show {padding:0px 15px;}
 
-ul.pagination{padding:0px;margin:0px;}
+ul .pagination{padding:0px;margin:0px;}
 
 #bs-example-navbar-collapse-1{padding-right:20px;}
                 
@@ -34,11 +34,11 @@ ul.pagination{padding:0px;margin:0px;}
      cursor: pointer;
      }
 
-p.p {margin-bottom :2px;}
+p .p {margin-bottom :2px;}
 
-div.panel.panel-default{margin-bottom:0px;}
+div .panel.panel-default{margin-bottom:0px;}
 
-div.row.show{margin-top:5px;}
+div .row.show{margin-top:5px;}
 
 @media all and (max-width:374px) { 
     /*.spNone { display: none;}*/
@@ -167,6 +167,6 @@ body{margin-top:20px;}
     padding-right:7px;
 }
 
-aside.col-xs-6 col-md-4{
+aside .col-xs-6 ,.col-md-4{
    padding-right :5px; 
 }

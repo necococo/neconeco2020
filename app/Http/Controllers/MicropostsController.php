@@ -91,32 +91,58 @@ class MicropostsController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(),[
-        'photo' => 'required|image|max:5000',
+        'photo' => 'required|image|max:5120',
         'search_tag' => 'nullable',
-        'lat' => 'required',
-        'long' => 'required',
+        'lat' => 'nullable',
+        'long' => 'nullable',
         ]);
         
         if ($validator->fails()){
             return back()->withErrors($validator)->withInput();
         }
-        
-        $micropost = $request->user()->microposts()->create([
-            'image_path' => $request->file('photo'),
-            'search_tag' => $request->search_tag,
-            'map_lat' => $request->lat,
-            'map_long' => $request->long,
+        //apiに写真をアップし猫かどうかの判定、猫でなければもう一度アップ画面に遷移、猫なら保存
+        $ch = curl_init();
+        curl_setopt_array($ch, [
+            CURLOPT_URL         => "https://aimaker.io/image/classification/api",
+            CURLOPT_POST        => true,
+            CURLOPT_POSTFIELDS  => [
+                'id' => 5629,
+                'apikey' => "c28f3694803e7631c5feb0831f29be77a0a03197bec8f9d55204f77db57bd7dfb3a10fa3f7d3b0ddf229f1d62a648243",
+                'file' => new \CURLFile($request->photo->path()),
+            ],
+            CURLOPT_HTTPHEADER => ['Content-Type:multipart/form-data'],
+            CURLOPT_SSL_VERIFYPEER => false,
+            CURLOPT_RETURNTRANSFER => true,
         ]);
+    
+        $result = curl_exec($ch);
+        $response = json_decode($result, true);
+        curl_close($ch);
+        dd($response);
+        //判定が猫かどうかのboolian変数
+        $is_cat = $response['labels']['0']['score'] >= 0.8;
         
-        
-        $path = Storage::disk('s3')->putFile('images', $request->file('photo'), 'public'); // s3/images/にアップ
-        
-        $url = Storage::disk('s3')->url($path);
-        
-        $micropost->image_path = $url;
-        $micropost->save();
-        return redirect()->route('microposts.show', ['id' => \Auth::id(), 'micropost' =>$micropost ])->with('success','ファイルはアップロードされました。');
-
+        if($is_cat) {
+            $micropost = $request->user()->microposts()->create([
+                'image_path' => $request->file('photo'),
+                'search_tag' => $request->search_tag,
+                'map_lat' => $request->lat,
+                'map_long' => $request->long,
+            ]);
+            
+            
+            $path = Storage::disk('s3')->putFile('neconeco2020', $request->file('photo'), 'public'); // s3/images/にアップ
+            
+            $url = Storage::disk('s3')->url($path);
+            
+            $micropost->image_path = $url;
+            $micropost->save();
+            return redirect()->route('microposts.show', ['id' => \Auth::id(), 'micropost' =>$micropost ])->with('success','ファイルはアップロードされました。');
+        }else {
+            $original_error_message = "これはおそらく猫ではありませんね。猫写真をアップしてください。";
+            // return redirect()->back(['original_error_message'=>$original_error_message]);
+            return redirect()->back();
+        }
     }
     
 
