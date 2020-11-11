@@ -25,8 +25,8 @@
                     
                     <li><a href="/usage">使い方</a></li>
                 @if (Auth::check())
-                    <li><a href="/">All_Photos</a></li> 
-                    <li>{!! link_to_route('microposts.all_map','All Cats Map') !!}</li>
+                    <li><a href="/">All Cats Photos</a></li> 
+                    <li>{!! link_to_route('microposts.all_map','All Photos Map') !!}</li>
                     <li>{!! link_to_route('users.index','Other Users') !!}</li>
                     <li>{!! link_to_route('microposts.create','New Post') !!}</li>
                     <li class="dropdown">

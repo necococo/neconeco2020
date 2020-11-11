@@ -182,7 +182,7 @@ class MicropostsController extends Controller
     public function all_map()
     {
         $microposts = DB::table('microposts')->get();
-        //jacvascriptへ渡すためにjson形式へ変換
+        //<script></script>へ渡すためにjson形式へ変換
         $microposts = $microposts->toJson();
         // dd($microposts);
         return view('microposts.all_map', ['microposts' => $microposts]);
