@@ -3,7 +3,7 @@
 @section('content')
 {!! $microposts->render() !!}
 <div>
-	<ul class="sortable">
+	<ul id="cat_images_flex">
 	@foreach ($microposts as $micropost)
    		<a class="float" id="{{$micropost->id}}"  href="{{ route('microposts.show', ['id' => $micropost->id]) }}">
    		<img class="cat_image" src="{{ secure_asset($micropost->image_path)}}"></a>

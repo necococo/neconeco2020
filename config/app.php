@@ -229,6 +229,5 @@ return [
     ],
 
 
-    'GOOGLE_MAPS_KEY' => env('GOOGLE_MAPS_KEY'),
-    'base_url' => env('base_url'),
+    
 ];

@@ -8,13 +8,14 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">NecoNeco</a>
-                
+                <!--タイトル-->
+                <a class="navbar-brand" href="/">NecoNeco</a>
+                <!--検索バー-->
                 <form id="search" action="/microposts/search" method="GET">
                   　<div id="search_field" class="input-group">
                         <input  type="text" class="form-control" name="search_words"  placeholder="検索ワード入力。「,」でOR検索">
                         <span class="input-group-btn">
-                        	<button type="submit" class="btn btn-default">写真検索</button>
+                        	<button type="submit" class="btn btn-default">検索</button>
                         </span>
                     </div>
                 </form>
