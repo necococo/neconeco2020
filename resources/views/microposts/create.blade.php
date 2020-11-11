@@ -32,35 +32,35 @@
 </div>
 
 @if (Auth::id() == $user->id)
-<div class="row">
-    <div class="panel-heading">
-        <hr>
-        
-        <h4 class="panel-title">Upload data</h4>
-        <hr>
-        <div class="panel-body">
-            <div>
-                <span class="bold">現在位置   　</span><span id="location"></span>（精度:半径 <span id="accuracy"></span> m）
-            </div>
+    <div class="row">
+        <div class="panel-heading">
+            <hr>
             
-            <div class="form-data">
-                <br>
-                {!! Form::open(['route' => ['microposts.store'], 'method' => 'POST', 'files' => true]) !!}
-                    {!! Form::label('file', '猫写真を選択（5MB以下, AIによる猫判定あり）') !!}
-                    {!! Form::file('file', null, ['class' => 'form-control']) !!}  
-                    <br> 
-                    <div class="form-group">
-                        {!! Form::label('search_tag', '検索タグ(複数可)') !!}
-                        {!! Form::text('search_tag', null, ['class' => 'form-control-sm']) !!}    
-                    </div>
-                    {!! Form::hidden('lat', null, ['id' => 'lat']) !!}   
-                    {!! Form::hidden('lng', null, ['id' => 'lng']) !!} 
-                {!! Form::submit('Upload', ['class' => 'btn btn-warning', 'id' => 'button']) !!}
-             <hr>
-            </div>    
-        </div>
-    </div>   
-</div>
+            <h4 class="panel-title">Upload data</h4>
+            <hr>
+            <div class="panel-body">
+                <div>
+                    <span class="bold">現在位置   　</span><span id="location"></span>（精度:半径 <span id="accuracy"></span> m）
+                </div>
+                
+                <div class="form-data">
+                    <br>
+                    {!! Form::open(['route' => ['microposts.store'], 'method' => 'POST', 'files' => true]) !!}
+                        {!! Form::label('file', '猫写真を選択（5MB以下, AIによる猫判定あり）') !!}
+                        {!! Form::file('file', null, ['class' => 'form-control']) !!}  
+                        <br> 
+                        <div class="form-group">
+                            {!! Form::label('search_tag', '検索タグ(複数可)') !!}
+                            {!! Form::text('search_tag', null, ['class' => 'form-control-sm']) !!}    
+                        </div>
+                        {!! Form::hidden('lat', null, ['id' => 'lat']) !!}   
+                        {!! Form::hidden('lng', null, ['id' => 'lng']) !!} 
+                    {!! Form::submit('Upload', ['class' => 'btn btn-warning', 'id' => 'button']) !!}
+                 <hr>
+                </div>    
+            </div>
+        </div>   
+    </div>
 @endif
 <script src="{{ secure_asset('js/get_set_location.js') }}"></script>
 <script src="{{ secure_asset('js/validate_file.js') }}"></script>

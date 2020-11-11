@@ -86,19 +86,17 @@
     </div>
 </div>
 
-// <script>
-// function show_map() {
-//   let lat = JSON.parse(@json($json_micropost))['map_lat'];
-//   let lng = JSON.parse(@json($json_micropost))['map_lng'];
-  
-//   let location = {lat:lat, lng: lng}; 
-//   let options = { zoom: 10, center: location, disableDoubleClickZoom: true }; 
-//   let map = new google.maps.Map(document.getElementById('show_map'), options);
-//   let marker=new google.maps.Marker({position: location,map: map,});
-// }
-// </script>
- 
-<script src="{{ secure_asset('/js/gmap/show_map.js') }}"></script>
+<script>
+function show_map() {
+  let lat = JSON.parse(@json($json_micropost))['map_lat'];
+  let lng = JSON.parse(@json($json_micropost))['map_lng'];
+  let location = {lat:lat, lng: lng}; 
+  let options = { zoom: 10, center: location, disableDoubleClickZoom: true }; 
+  let map = new google.maps.Map(document.getElementById('show_map'), options);
+  let marker=new google.maps.Marker({position: location,map: map,});
+}
+</script> 
+
 <script src="https://maps.googleapis.com/maps/api/js?key={{config('app.GOOGLE_MAPS_KEY')}}&callback=show_map" async defer></script>
 
 @endsection

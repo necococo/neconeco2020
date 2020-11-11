@@ -56,10 +56,8 @@
     
   }
 </script>
-<!--<script src="{{ secure_asset('js/gmap/all_map.js') }}"></script>-->
 
 <script  src="https://maps.googleapis.com/maps/api/js?key={{config('app.GOOGLE_MAPS_KEY')}}&callback=all_map" async defer></script>
-<!--<script  src="https://maps.googleapis.com/maps/api/js?key={{config('app.GOOGLE_MAPS_KEY')}}&callback=all_map"></script>-->
 
 
 @endsection
