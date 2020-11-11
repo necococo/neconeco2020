@@ -34,43 +34,44 @@ ul .pagination{padding:0px;margin:0px;}
      cursor: pointer;
      }
 
-p .p {margin-bottom :2px;}
+.post-data {margin-bottom :2px;}
 
 div .panel.panel-default{margin-bottom:0px;}
 
 div .row.show{margin-top:5px;}
 
+/*#all_map {*/
+/*    width:100%; */
+/*    margin:0 auto;*/
+/*}*/
+
+
+
 @media all and (max-width:374px) { 
     /*.spNone { display: none;}*/
     .usage{width:375px; height: auto;}
-    img.cat_image {width:100%;height:auto;}
-    div.allmap {width:100%; height:375px;}
+    #all_map {height:375px;}
 }
 @media all and (min-width:375px) { 
     /*.spNone { display: none;}*/
     .usage{width:375px; height: auto;}
-     img.cat_image {width:375px;height:auto;}
-    div.allmap {width:375px; height:375px;}
+    #all_map {height:375px;}
 }
 @media all and (min-width:480px) { 
     .usage{width:480px; height: auto;}
-    img.cat_image {width:480px;height:auto;}
-    div.allmap {width:480px; height:360px;}
+    #all_map {height:360px;}
 }
 @media all and (min-width:667px) and ( max-width:1024px) {
     .usage{width:667px; height: auto;}
-    img.cat_image {width:auto; height:350px;}
-    div.allmap {width:667px; height:500px;}
+    #all_map {height:500px;}
 }
 @media all and (min-width:1024px) {
     .usage{width:667px; height: auto;}
-    img.cat_image {width:auto; height:350px;}
-    div.allmap {width:1024px; height:768px;}
+    #all_map {height:768px;}
 }
 @media all and (min-width:1366px) {
     .usage{width:667px; height: auto;}
-    img.cat_image {width:auto; height:350px;}
-    div.allmap {width:1366px; height:1024px;}
+    #all_map {height:1024px; }
 }
 
 
@@ -83,9 +84,14 @@ font-weight: bold;
 display: none;
 }
 
-#map #infowindow-content {
+#infowindow-content {
 display: inline;
 }
+
+
+/*#map {*/
+/*  display: inline;  */
+/*}*/
 
 .pac-card {
 margin: 10px 10px 0 0;
@@ -142,9 +148,15 @@ width: 345px;
 
 body{margin-top:20px;}
 
+.comment-wrapper {
+    width: 97%;
+    margin: 0 auto;
+}
+
 .comment-wrapper .panel-body {
     max-height:650px;
     overflow:auto;
+    margin-top: 30px;
 }
 
 .comment-wrapper .media-list .media img {
@@ -159,13 +171,11 @@ body{margin-top:20px;}
 }
 
 #media-list{
-    margin-left: 5px;
+    margin-left: 7px;
     margin-right: 7px;
 }
 
-#panel-body{
-    padding-right:7px;
-}
+
 
 aside .col-xs-6 ,.col-md-4{
    padding-right :5px; 
@@ -173,4 +183,30 @@ aside .col-xs-6 ,.col-md-4{
 
 .btn-success {
     margin-top: 3px;
+}
+
+
+/*#show_map {*/
+/*   width: 100%;*/
+/*   height: auto;*/
+/*   margin-bottom: 30px;*/
+/*}*/
+
+.bold {
+    font-weight: bold;
+}
+
+.color-gray {
+    color: gray;
+}
+
+.cat_image {
+   width:70%; height:auto;
+   float: left;
+}
+
+.show_data {
+    margin-bottom: 100px;
+    width: 25%;
+    float: right;
 }

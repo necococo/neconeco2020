@@ -12,7 +12,7 @@
                 
                 <form id="search" action="/microposts/search" method="GET">
                   　<div id="search_field" class="input-group">
-                        <input  type="text" class="form-control" name="search_words"  placeholder="検索ワード入力。 　OR検索の場合は「 , 」で繋げてください。">
+                        <input  type="text" class="form-control" name="search_words"  placeholder="検索ワード入力。「,」でOR検索">
                         <span class="input-group-btn">
                         	<button type="submit" class="btn btn-default">写真検索</button>
                         </span>
@@ -26,7 +26,7 @@
                     <li><a href="/usage">使い方</a></li>
                 @if (Auth::check())
                     <li><a href="/">All_Photos</a></li> 
-                    <li>{!! link_to_route('microposts.maps','All Neco Maps') !!}</li>
+                    <li>{!! link_to_route('microposts.all_map','All Cats Map') !!}</li>
                     <li>{!! link_to_route('users.index','Other Users') !!}</li>
                     <li>{!! link_to_route('microposts.create','New Post') !!}</li>
                     <li class="dropdown">

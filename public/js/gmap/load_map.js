@@ -1,5 +1,6 @@
 // リターンキーを押しても送信されないように13番(エンターキー)を無効化
-window.onload=function() { 
+// window.onload=function() { 
+function load_map() {
   $(window).keydown(function(event){
     if(event.keyCode == 13) {
       event.preventDefault();
@@ -75,7 +76,7 @@ window.onload=function() {
   
   $('form').submit(function(){
     $('[name="lat"]').val(location.lat);
-    $('[name="long"]').val(location.lng);
+    $('[name="lng"]').val(location.lng);
   });
     
   

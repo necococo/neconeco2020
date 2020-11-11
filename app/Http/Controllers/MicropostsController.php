@@ -29,10 +29,11 @@ class MicropostsController extends Controller
     {
         $user = \Auth::user();
         $micropost = Micropost::find($id);
+        $json_micropost = $micropost->toJson();
         $comments = $micropost->comments()->orderBy('created_at', 'desc')->get();
         $data = ['user' => $user, 'micropost' => $micropost, 'comments'=>$comments];
         
-        return view('microposts.show',$data);
+        return view('microposts.show',$data, ['json_micropost'=>$json_micropost]);
     }
     
       //編集    
@@ -42,7 +43,7 @@ class MicropostsController extends Controller
         $user = \Auth::user();
         $micropost = Micropost::find($id);
    
-        // dd($micropost->map_long);
+        // dd($micropost->map_lng);
         $comments = $micropost->comments()->orderBy('created_at', 'desc')->get();
         $data = ['user' => $user, 'micropost' => $micropost, 'comments'=>$comments];
         return view('microposts.edit',$data);
@@ -53,10 +54,10 @@ class MicropostsController extends Controller
     {   
         $data = [];
         $validator = Validator::make($request->all(),[
-        // 'file' => 'required|image|max:5000',
+        // 'file' => 'required|image|max:5120',
         'search_tag' => 'nullable',
-        'lat' => 'required',
-        'long' => 'required',
+        // 'lat' => 'required',
+        // 'lng' => 'required',
         ]);
         
         if ($validator->fails()){
@@ -66,8 +67,6 @@ class MicropostsController extends Controller
         $user = \Auth::user();
         $micropost = Micropost::find($id);
         $micropost->search_tag = $request->search_tag;
-        $micropost->map_lat = $request->lat;
-        $micropost->map_long = $request->long;
         $micropost->save();
         $comments = $micropost->comments()->orderBy('created_at', 'desc')->get();
         $data = ['user' => $user, 'micropost' => $micropost, 'comments'=>$comments];
@@ -90,6 +89,7 @@ class MicropostsController extends Controller
     
     public function store(Request $request)
     {
+        //先にファイルの種類とサイズをチェック
         $validator = Validator::make($request->all(),[
         'file' => 'required|image|max:5120',
         ]);
@@ -97,16 +97,17 @@ class MicropostsController extends Controller
         if ($validator->fails()){
             return back()->withErrors($validator)->withInput();
         }
-        // dd($_FILES["file"]);
-        //apiに写真をアップし猫かどうかの判定、猫でなければもう一度アップ画面に遷移、猫なら保存
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //ファイルが写真ならば、apiに写真をアップし猫かどうかの判定、猫でなければもう一度アップ画面に遷移、猫なら保存
         $ch = curl_init();
         curl_setopt_array($ch, [
             CURLOPT_URL => "https://aimaker.io/image/classification/api",
             CURLOPT_POST => true,
             CURLOPT_POSTFIELDS => [
                 'id' => 5629,
+                //公開されているキーなので隠さなくて良い
                 'apikey' => "c28f3694803e7631c5feb0831f29be77a0a03197bec8f9d55204f77db57bd7dfb3a10fa3f7d3b0ddf229f1d62a648243",
-                // 'file' => new \CURLFile(public_path('cat.jpg')),
+                // , $_FILES["file"]["type"], $_FILES["file"]["name"]を入れないとエラー
                 'file' => new \CURLFile($_FILES["file"]["tmp_name"], $_FILES["file"]["type"], $_FILES["file"]["name"]),
             ],
             CURLOPT_HTTPHEADER => ['Content-Type:multipart/form-data'],
@@ -118,30 +119,28 @@ class MicropostsController extends Controller
         $response = json_decode($result, true);
         // print_r($response);
         curl_close($ch);
-
         //判定が猫かどうかのboolian変数
         $is_cat = $response['labels']['0']['score'] >= 0.8;
-        
-        
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
         if($is_cat) {
             $micropost = $request->user()->microposts()->create([
                 'image_path' => $request->file('file'),
                 'search_tag' => $request->search_tag,
                 'map_lat' => $request->lat,
-                'map_long' => $request->long,
+                'map_lng' => $request->lng,
             ]);
-            
-            
-            $path = Storage::disk('s3')->putFile('neconeco2020', $request->file('file'), 'public'); // s3/images/にアップ
-            
+            // s3/images/にアップ
+            $path = Storage::disk('s3')->putFile('neconeco2020', $request->file('file'), 'public'); 
+            //生成されたs3上のURLを変数に代入
             $url = Storage::disk('s3')->url($path);
-            
             $micropost->image_path = $url;
             $micropost->save();
+            
             return redirect()->route('microposts.show', ['id' => \Auth::id(), 'micropost' =>$micropost ])->with('success','ファイルはアップロードされました。');
         }else {
             $cat_error = "この写真はおそらく猫ではありませんね。猫写真をアップしてください。";
-            // return redirect()->back(['original_error_message'=>$original_error_message]);
+
             return redirect()->back()->with('cat_error',$cat_error);
         }
     }
@@ -180,12 +179,13 @@ class MicropostsController extends Controller
         return view('microposts.search', ['sql' => $sql]);
     }
     
-    public function maps()
+    public function all_map()
     {
         $microposts = DB::table('microposts')->get();
-        $data=$microposts->toJson();
-        // dd($data);
-        return view('microposts.all_maps', ['data' => $data]);
+        //jacvascriptへ渡すためにjson形式へ変換
+        $microposts = $microposts->toJson();
+        // dd($microposts);
+        return view('microposts.all_map', ['microposts' => $microposts]);
     }
    
 }

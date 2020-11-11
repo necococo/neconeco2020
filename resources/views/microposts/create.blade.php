@@ -1,7 +1,8 @@
-    @extends('layouts.app')
- 
-    @section('content')
-    <div class="row">
+@extends('layouts.app')
+
+@section('content')
+<div class="row">
+    
     <aside class="col-xs-4 col-md-2">
         <div class="panel panel-default">
             <div class="panel-heading">
@@ -15,6 +16,7 @@
             </div>
         </div>
     </aside>
+    
     <div class="col-xs-8 col-md-10">
         <ul class="nav nav-tabs nav-justified">
             @if (Auth::id() == $user->id)
@@ -27,47 +29,39 @@
             <li role="presentation" class="{{ Request::is('users/*/favoritings') ? 'active' : '' }}"><a style="text-align:left;" href="{{ route('users.favoritings', ['id' => $user->id]) }}">Favo_Photos <span class="badge">{{ $count_favoritings }}</span></a></li>
         </ul>
     </div> 
-    </div>
-    @if (Auth::id() == $user->id)
-    <div class="row">
+</div>
+
+@if (Auth::id() == $user->id)
+<div class="row">
     <div class="panel-heading">
-        <h4 class="panel-title">Upload</h4>
+        <hr>
+        
+        <h4 class="panel-title">Upload data</h4>
+        <hr>
         <div class="panel-body">
-            <div class="col-xs-12 col-md-3 form-data">
+            <div>
+                <span class="bold">現在位置   　</span><span id="location"></span>（精度:半径 <span id="accuracy"></span> m）
+            </div>
+            
+            <div class="form-data">
                 <br>
                 {!! Form::open(['route' => ['microposts.store'], 'method' => 'POST', 'files' => true]) !!}
-                    {!! Form::label('file', '猫写真を選択(<=5MB), AIによる猫判定あり') !!}
-                    {!! Form::file('file',null,['class' => 'form-control']) !!}  
+                    {!! Form::label('file', '猫写真を選択（5MB以下, AIによる猫判定あり）') !!}
+                    {!! Form::file('file', null, ['class' => 'form-control']) !!}  
                     <br> 
                     <div class="form-group">
-                        {!! Form::label('search_tag', '検索タグ(任意)') !!}
-                        {!! Form::text('search_tag', null,['class' => 'form-control']) !!}    
+                        {!! Form::label('search_tag', '検索タグ(複数可)') !!}
+                        {!! Form::text('search_tag', null, ['class' => 'form-control-sm']) !!}    
                     </div>
-                    <br>
-                    <h5>中心位置を撮影場所として保存: 任意</h5>
-                    <input id="pac-input" class="controls" type="text" placeholder="Search Box">
-                    <div id="map" style="width:370px;height:370px;"></div>
-                    <br>
-                    
-                    {!! Form::submit('Upload', ['class' => 'btn btn-warning', 'id' => 'button']) !!}
-                    {!! Form::hidden('lat') !!}
-                    {!! Form::hidden('long') !!}
-                {!! Form::close() !!}
+                    {!! Form::hidden('lat', null, ['id' => 'lat']) !!}   
+                    {!! Form::hidden('lng', null, ['id' => 'lng']) !!} 
+                {!! Form::submit('Upload', ['class' => 'btn btn-warning', 'id' => 'button']) !!}
+             <hr>
             </div>    
         </div>
     </div>   
-    </div>
-    @endif
-<script>
-$(function() {
-  $(window).keydown(function(event){
-    if(event.keyCode == 13) {
-      event.preventDefault();
-      return false;
-    }
-  });
-});
-</script>    
+</div>
+@endif
+<script src="{{ secure_asset('js/get_set_location.js') }}"></script>
 <script src="{{ secure_asset('js/validate_file.js') }}"></script>
-<script src="{{ secure_asset('js/gmaps/load_map.js') }}"></script>
 @endsection

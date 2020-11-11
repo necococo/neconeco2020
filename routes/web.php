@@ -38,7 +38,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('favoritings', 'UsersController@favoritings')->name('users.favoritings');
     });
     Route::get('microposts/search', 'MicropostsController@search');
-    Route::get('microposts/maps', 'MicropostsController@maps')->name('microposts.maps');
+    Route::get('microposts/all_map', 'MicropostsController@all_map')->name('microposts.all_map');
     Route::resource('microposts', 'MicropostsController', ['only' => ['create', 'store', 'show', 'edit', 'update', 'destroy']]);
    
     Route::group(['prefix' => 'microposts/{id}'], function () {

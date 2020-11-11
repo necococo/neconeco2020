@@ -19,7 +19,7 @@ class CreateMicropostsTable extends Migration
             $table->string('image_path')->nullable()->default(null);
             $table->string('search_tag')->nullable()->default(null);
             $table->double('map_lat')->nullable()->default(null);
-            $table->double('map_long')->nullable()->default(null);
+            $table->double('map_lng')->nullable()->default(null);
             $table->timestamps();
             //外部キー制約
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
