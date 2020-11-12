@@ -1,17 +1,8 @@
 let map, infoWindow;
 
 function initMap() {
-  map = new google.maps.Map(document.getElementById("map"), {
-    center: { lat: 34.397, lng: 150.644 },
-    zoom: 10,
-  });
-  infoWindow = new google.maps.InfoWindow();
-  const locationButton = document.createElement("button");
-  locationButton.textContent = "現在位置へ移動";
-  locationButton.classList.add("custom-map-control-button");
-  map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
-  locationButton.addEventListener("click", () => {
-    // Try HTML5 geolocation.
+  
+  
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
@@ -20,11 +11,6 @@ function initMap() {
             lng: position.coords.longitude,
             accuracy:position.coords.accuracy
           };
-          
-          infoWindow.setPosition(pos);
-          infoWindow.setContent("Location found.");
-          infoWindow.open(map);
-          map.setCenter(pos);
           //
           $('#location').text(`緯度:${pos.lat}、経度:${pos.lng}`);
           $('#accuracy').text(pos.accuracy);
@@ -32,6 +18,15 @@ function initMap() {
           $('#lat').val(pos.lat);
           $('#lng').val(pos.lng);
           
+          map = new google.maps.Map(document.getElementById("map"), {
+          center: { lat: pos.lat, lng: pos.lng },
+          zoom: 10,
+        });
+        infoWindow = new google.maps.InfoWindow();
+        infoWindow.setPosition(pos);
+        infoWindow.setContent("Location found.");
+        infoWindow.open(map);
+        map.setCenter(pos);
         },
         () => {
           handleLocationError(true, infoWindow, map.getCenter());
@@ -41,7 +36,7 @@ function initMap() {
       // Browser doesn't support Geolocation
       handleLocationError(false, infoWindow, map.getCenter());
     }
-  });
+  
 }
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {

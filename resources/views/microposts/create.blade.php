@@ -65,10 +65,10 @@
         </div>   
     </div>
    
-    <script src="{{ secure_asset('/js/gmap/create_map.js') }}"></script>
+    <script src="{{ secure_asset('/js/gmap/create_map2.js') }}"></script>
     <script src="{{ secure_asset('js/validate_file.js') }}"></script>
 @endif
-
 <script async defer src="https://maps.googleapis.com/maps/api/js?key={{config('services.gmap-api')}}&callback=initMap" ></script>
+
 
 @endsection
