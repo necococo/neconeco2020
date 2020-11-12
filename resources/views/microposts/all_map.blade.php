@@ -55,8 +55,7 @@
   }
 </script>
 
-<!--<script  src="https://maps.googleapis.com/maps/api/js?key={{config('services.gmap-api')}}&callback=all_map" async defer></script>-->
-<script  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCGZY-NOW_bWBeFnqsVXwn_tz3cUVYtC5I&callback=all_map" async defer></script>
+<script  src="https://maps.googleapis.com/maps/api/js?key={{config('services.gmap-api')}}&callback=all_map" async defer></script>
 
 
 @endsection

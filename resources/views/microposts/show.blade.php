@@ -103,7 +103,6 @@ function show_map() {
 }
 </script> 
 
-<!--<script src="https://maps.googleapis.com/maps/api/js?key={{config('services.gmap-api')}}&callback=show_map" async defer></script>-->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCGZY-NOW_bWBeFnqsVXwn_tz3cUVYtC5I&callback=show_map" async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key={{config('services.gmap-api')}}&callback=show_map" async defer></script>
 
 @endsection
