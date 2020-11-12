@@ -63,12 +63,34 @@
             </div>
         </div>   
     </div>
-    <script src="{{ secure_asset('js/get_set_location.js') }}"></script>
+    <!--<script src="{{ secure_asset('js/get_set_location.js') }}"></script>-->
+    <script>
+        function success(pos){
+            lat = pos.coords.latitude;
+            lng = pos.coords.longitude;
+            // accuracy = pos.coords.accuracy;
+            <!--let lat = pos.coords.latitude;-->
+            <!--let lng = pos.coords.longitude;-->
+            let accuracy = pos.coords.accuracy;
+            $('#location').text(`緯度:${lat}、経度:${lng}`);
+            $('#accuracy').text(accuracy);
+            //getしたlat lng 値をform hidden の　value にセット
+            $('#lat').val(lat);
+            $('#lng').val(lng);
+        }
     
+        function error(pos){
+            alert('位置情報の取得に失敗しました。エラーコード：');
+            $('#lat').val(null);
+            $('#lng').val(null);
+        }
+
+        navigator.geolocation.getCurrentPosition(success, error);
+    </script>    
     <script>
         function map(){
-            let lat = document.getElementById("lat").getAttribute(value);
-            let lng = document.getElementById("lng").getAttribute(value);
+            // let lat = document.getElementById("lat").getAttribute(value);
+            // let lng = document.getElementById("lng").getAttribute(value);
             console.log(lat,lng);
             let latlng = new google.maps.LatLng(lat,lng);
         	let map = document.getElementById("map");
