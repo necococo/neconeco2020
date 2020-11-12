@@ -69,7 +69,7 @@
         function map(){
             let lat = document.getElementById("lat").getAttribute(value);
             let lng = document.getElementById("lng").getAttribute(value);
-            console.log("lat":lat,lng);
+            console.log(lat,lng);
             let latlng = new google.maps.LatLng(lat,lng);
         	let map = document.getElementById("map");
         	let opt = {
