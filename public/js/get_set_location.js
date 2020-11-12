@@ -1,7 +1,10 @@
 function success(pos){
-     lat = pos.coords.latitude;
-     lng = pos.coords.longitude;
-     accuracy = pos.coords.accuracy;
+    // lat = pos.coords.latitude;
+    // lng = pos.coords.longitude;
+    // accuracy = pos.coords.accuracy;
+    let lat = pos.coords.latitude;
+    let lng = pos.coords.longitude;
+    let accuracy = pos.coords.accuracy;
     $('#location').text(`緯度:${lat}、経度:${lng}`);
     $('#accuracy').text(accuracy);
     //getしたlat lng 値をform hidden の　value にセット

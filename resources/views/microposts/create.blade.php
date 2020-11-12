@@ -54,7 +54,7 @@
                         {!! Form::hidden('lat', null, ['id' => 'lat']) !!}   
                         {!! Form::hidden('lng', null, ['id' => 'lng']) !!} 
                         
-                        <p><span class="bold">現在位置   　</span><span id="location"></span>（精度:半径 <span id="accuracy"></span> m</p>
+                        <p><span class="bold">現在位置   　</span><span id="location"></span>（精度:半径 <span id="accuracy"></span> m）</p>
                         <div id="map"></div>
                         
                     {!! Form::submit('Upload', ['class' => 'btn btn-warning', 'id' => 'button']) !!}
@@ -67,8 +67,9 @@
     
     <script>
         function map(){
-            
-            console.log(lat,lng);
+            let lat = document.getElementById("lat").getAttribute(value);
+            let lng = document.getElementById("lng").getAttribute(value);
+            console.log("lat":lat,lng);
             let latlng = new google.maps.LatLng(lat,lng);
         	let map = document.getElementById("map");
         	let opt = {
