@@ -39,9 +39,7 @@
             <h4 class="panel-title">Upload data</h4>
             <hr>
             <div class="panel-body">
-                <div>
-                    <span class="bold">現在位置   　</span><span id="location"></span>（精度:半径 <span id="accuracy"></span> m）
-                </div>
+                
                 
                 <div class="form-data">
                     <br>
@@ -55,13 +53,49 @@
                         </div>
                         {!! Form::hidden('lat', null, ['id' => 'lat']) !!}   
                         {!! Form::hidden('lng', null, ['id' => 'lng']) !!} 
+                        
+                        <p><span class="bold">現在位置   　</span><span id="location"></span>（精度:半径 <span id="accuracy"></span> m</p>
+                        <div id="map"></div>
+                        
                     {!! Form::submit('Upload', ['class' => 'btn btn-warning', 'id' => 'button']) !!}
                  <hr>
                 </div>    
             </div>
         </div>   
     </div>
+    <script src="{{ secure_asset('js/get_set_location.js') }}"></script>
+    
+    <script>
+        function map(){
+            
+            console.log(lat,lng);
+            let latlng = new google.maps.LatLng(lat,lng);
+        	let map = document.getElementById("map");
+        	let opt = {
+        		zoom: 17,
+        		center: latlng,
+        		mapTypeId: google.maps.MapTypeId.ROADMAP,
+        		scrollwheel: false,
+        		scaleControl: true,
+        		disableDoubleClickZoom: true,
+        		draggable: false
+        	};
+        
+        	// google map 表示
+        	let mapObj = new google.maps.Map(map, opt);
+        
+        	// マーカーを設定
+        	let marker = new google.maps.Marker({
+        		position: latlng,
+        		map: mapObj
+        	});
+        }
+        
+    </script>
+   
+    <script src="{{ secure_asset('js/validate_file.js') }}"></script>
 @endif
-<script src="{{ secure_asset('js/get_set_location.js') }}"></script>
-<script src="{{ secure_asset('js/validate_file.js') }}"></script>
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key={{config('services.gmap-api')}}&callback=map" ></script>
+
 @endsection
