@@ -55,6 +55,7 @@
                         {!! Form::hidden('lng', null, ['id' => 'lng']) !!} 
                         
                         <p><span class="bold">現在位置   　</span><span id="location"></span>（精度:半径 <span id="accuracy"></span> m）</p>
+                        <!--マップ-->
                         <div id="map"></div>
                         
                     {!! Form::submit('Upload', ['class' => 'btn btn-warning', 'id' => 'button']) !!}
@@ -63,62 +64,11 @@
             </div>
         </div>   
     </div>
-    <!--<script src="{{ secure_asset('js/get_set_location.js') }}"></script>-->
-    <script>
-        function success(pos){
-            lat = pos.coords.latitude;
-            lng = pos.coords.longitude;
-            // accuracy = pos.coords.accuracy;
-            <!--let lat = pos.coords.latitude;-->
-            <!--let lng = pos.coords.longitude;-->
-            let accuracy = pos.coords.accuracy;
-            $('#location').text(`緯度:${lat}、経度:${lng}`);
-            $('#accuracy').text(accuracy);
-            //getしたlat lng 値をform hidden の　value にセット
-            $('#lat').val(lat);
-            $('#lng').val(lng);
-        }
-    
-        function error(pos){
-            alert('位置情報の取得に失敗しました。エラーコード：');
-            $('#lat').val(null);
-            $('#lng').val(null);
-        }
-
-        navigator.geolocation.getCurrentPosition(success, error);
-    </script>    
-    <script>
-        function map(){
-            // let lat = document.getElementById("lat").getAttribute(value);
-            // let lng = document.getElementById("lng").getAttribute(value);
-            console.log(lat,lng);
-            let latlng = new google.maps.LatLng(lat,lng);
-        	let map = document.getElementById("map");
-        	let opt = {
-        		zoom: 17,
-        		center: latlng,
-        		mapTypeId: google.maps.MapTypeId.ROADMAP,
-        		scrollwheel: false,
-        		scaleControl: true,
-        		disableDoubleClickZoom: true,
-        		draggable: false
-        	};
-        
-        	// google map 表示
-        	let mapObj = new google.maps.Map(map, opt);
-        
-        	// マーカーを設定
-        	let marker = new google.maps.Marker({
-        		position: latlng,
-        		map: mapObj
-        	});
-        }
-        
-    </script>
    
+    <script src="{{ secure_asset('/js/gmap/create_map.js') }}"></script>
     <script src="{{ secure_asset('js/validate_file.js') }}"></script>
 @endif
 
-<script async defer src="https://maps.googleapis.com/maps/api/js?key={{config('services.gmap-api')}}&callback=map" ></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key={{config('services.gmap-api')}}&callback=initMap" ></script>
 
 @endsection
