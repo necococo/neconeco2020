@@ -37,7 +37,7 @@
       if(minlat>lat){minlat=lat}else{minlat=minlat}
       if(minlng>lng){minlng=lng}else{minlng=minlng}
 
-      markers[i]=new google.maps.Marker({ position: {lat:lat, lng:lng}, map:map,  url:"{{ config('services.dev-url') }}"+"microposts/"+id, label:""+id});
+      markers[i]=new google.maps.Marker({ position: {lat:lat, lng:lng}, map:map,  url:"{{ config('services.url') }}"+"microposts/"+id, label:""+id});
       google.maps.event.addListener(markers[i], 'click', function() {
       window.location.href = this.url;
       });

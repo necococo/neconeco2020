@@ -231,5 +231,5 @@ return [
 
     'gmap-api' => env('GOOGLE_MAPS_API_KEY'),
     
-    'dev-url' => env('base_url'),
+    'url' => env('base_url'),
 ];
