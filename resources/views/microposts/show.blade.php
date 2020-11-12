@@ -8,13 +8,13 @@
 
 <?php $json_micropost ?>
 
-<div style="padding-left:0px;" class="col-xs-12 col-md-12">
+<!--<div style="padding-left:0px;" class="col-xs-12 col-md-12">-->
 <div class="container">
     <div id="show_cat_and_show_data">
         <!--猫写真-->
-        <div id="show_cat" >
-            <img  src="{{ secure_asset($micropost->image_path)}}">
-        </div>
+        
+        <img id="show_cat" src="{{ secure_asset($micropost->image_path)}}">
+        
         <!--投稿データとボタン-->
         <div id="show_data">
             
@@ -89,7 +89,7 @@
             </div>
         </div>
     </div>
-</div>
+<!--</div>-->
 
 <script>
 function show_map() {

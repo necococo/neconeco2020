@@ -14,7 +14,7 @@
                         {!! Form::label('search_tag', '検索タグを更新') !!}
                         {!! Form::text('search_tag', null,['class' => 'form-control']) !!}    
                     </div>
-                    
+                    {!! Form::submit('Update', ['class' => 'btn btn-warning']) !!}
                 {!! Form::close() !!}
             @endif
     </div> 

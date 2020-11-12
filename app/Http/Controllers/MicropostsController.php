@@ -68,9 +68,10 @@ class MicropostsController extends Controller
         $micropost = Micropost::find($id);
         $micropost->search_tag = $request->search_tag;
         $micropost->save();
+        $json_micropost = $micropost->toJson();
         $comments = $micropost->comments()->orderBy('created_at', 'desc')->get();
         $data = ['user' => $user, 'micropost' => $micropost, 'comments'=>$comments];
-        return view('microposts.show', $data)->with('updated','データは更新されました。');
+        return view('microposts.show', $data, ['json_micropost'=>$json_micropost])->with('updated','データは更新されました。');
     }
     
     public function create()
