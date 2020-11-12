@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<?php ini_set('display_errors',1); ?>
 <div class="row">
     
     <aside class="col-xs-4 col-md-2">
