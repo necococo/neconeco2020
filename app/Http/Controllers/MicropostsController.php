@@ -79,7 +79,7 @@ class MicropostsController extends Controller
         
         $data = [];
         $user = \Auth::user();
-        $microposts =$user->microposts();
+        $microposts = $user->microposts();
         $data = ['user' => $user, 'microposts' => $microposts];
         $data += $this->counts($user);
         
@@ -136,7 +136,6 @@ class MicropostsController extends Controller
         curl_close($ch);
         //判定が猫かどうかのboolian変数
         $cat_p = $response['labels']['0']['score'] ;
-        dd($cat_p);
         // dd($request);
         //    +request: ParameterBag {#44 ▼
         //     #parameters: array:4 [▼
@@ -183,16 +182,16 @@ class MicropostsController extends Controller
         // }
         
         if($cat_p >= 0.7) {
-            $micropost = $request->user()->microposts()->create([
-                'search_tag' => $request->search_tag,
-                'map_lat' => $request->lat,
-                'map_lng' => $request->lng
-            ]);
-            // $micropost->search_tag = $request->search_tag;
-            // dd($micropost);
-            // $micropost->map_lat = $request->lat;
-            // $micropost->map_lng = $request->lng;
-            
+            // $micropost = $request->user()->microposts()->create([
+            //     'search_tag' => $request->search_tag,
+            //     'map_lat' => $request->lat,
+            //     'map_lng' => $request->lng
+            // ]);
+            $micropost = new Micropost;
+            $micropost->search_tag = $request->search_tag;
+            $micropost->map_lat = $request->lat;
+            $micropost->map_lng = $request->lng;
+            dd($micropost);
             //↑ここでHeroku でエラー
             // s3/images/にアップ
             $path = Storage::disk('s3')->putFile('neconeco2020', $request->file('file'), 'public'); 

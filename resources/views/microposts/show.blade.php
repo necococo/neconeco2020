@@ -2,14 +2,12 @@
 
 @section('content')
 
-@if (\Session::has('success'))
-    <div class="alert alert-success">{!! \Session::get('success') !!}</div>
-@endif
-
-<?php $json_micropost ?>
-
-<!--<div style="padding-left:0px;" class="col-xs-12 col-md-12">-->
 <div class="container">
+    <div style="padding-left:0px;" class="col-xs-12 col-md-12">
+    @if (\Session::has('success'))
+        <div class="alert alert-success">{!! \Session::get('success') !!}</div>
+    @endif
+    
     <div id="show_cat_and_show_data">
         <!--猫写真-->
         
@@ -89,7 +87,7 @@
             </div>
         </div>
     </div>
-<!--</div>-->
+</div>
 
 <script>
 function show_map() {
