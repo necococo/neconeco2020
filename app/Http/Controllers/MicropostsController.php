@@ -137,7 +137,15 @@ class MicropostsController extends Controller
         //判定が猫かどうかのboolian変数
         $is_cat = $response['labels']['0']['score'] >= 0.7;
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        dd($request);
+        // dd($request);
+        //    +request: ParameterBag {#44 ▼
+        //     #parameters: array:4 [▼
+        //       "_token" => "psOE2ZlZ06AqRzVA06QPQg168JnWzrx5KcALvRE3"
+        //       "search_tag" => null
+        //       "lat" => "34.045952"
+        //       "lng" => "131.0687232"
+        //     ]
+        //   }
         if($is_cat) {
             $micropost = $request->user()->microposts()->create([
                 //user_idは自動付加
@@ -177,7 +185,7 @@ class MicropostsController extends Controller
                 'map_lat' => $request->lat,
                 'map_lng' => $request->lng,
             ]);
-            // dd($micropost);
+            dd($micropost);
             //↑ここでHeroku でエラー
             // s3/images/にアップ
             $path = Storage::disk('s3')->putFile('neconeco2020', $request->file('file'), 'public'); 
