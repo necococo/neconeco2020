@@ -21,14 +21,14 @@
             <div id="data">
                 <p class="post-data">User name : {!! link_to_route('users.show', $micropost->user->name , ['id' => $micropost->user_id]) !!}</p>
                 <p class="post-data">写真ID: {{$micropost->id}}</p>
-                <p class="post-data">検索タグ: 
+                <p class="post-data">検索タグ: {{$micropost->search_tag}}</p> 
                     @if (Auth::id() === $micropost->user_id)
-                        {!! link_to_route('microposts.edit', $micropost->search_tag, ['id' => $micropost->id, 'class' => 'btn btn-warning']) !!}
+                        {!! link_to_route('microposts.edit', 'タグを編集', ['id' => $micropost->id, 'class' => 'btn btn-warning']) !!}
                     @endif
-                </p>
+                
             </div>
             
-            <div id="button">
+            <div id="button" style="margin-top: 30px;">
                 <p>この写真を</p>
                 <!--削除ボタン-->
                 <div>
