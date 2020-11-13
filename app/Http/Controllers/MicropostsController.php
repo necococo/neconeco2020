@@ -193,14 +193,14 @@ class MicropostsController extends Controller
                 'map_lng' => $request->lng,
                 'image_path' => $url
             ]);
-            //↑ここでHeroku でエラー
+            //↑ここでHeroku でエラー　->どの方法でもセーブができず-> heroku pg:reset DATABASE -> heroku run php artisan migrate
             // $micropost = new Micropost;
             // $micropost->search_tag = $request->search_tag;
             // $micropost->map_lat = $request->lat;
             // $micropost->map_lng = $request->lng;
             // $micropost->image_path = $url;
             // $micropost->save();
-            dd($micropost);
+            // dd($micropost);
             //新規なので空のはず
             // $comments = $micropost->comments()->orderBy('created_at', 'desc')->get();
             

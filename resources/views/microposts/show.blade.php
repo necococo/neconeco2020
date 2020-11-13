@@ -91,8 +91,9 @@
 
 <script>
 function show_map() {
-  let lat = JSON.parse(@json($json_micropost))['map_lat'];
-  let lng = JSON.parse(@json($json_micropost))['map_lng'];
+  let lat = parseFloat(JSON.parse(@json($json_micropost))['map_lat']);
+  let lng = parseFloat(JSON.parse(@json($json_micropost))['map_lng']);
+  console.log(lat, lng)
   let id = JSON.parse(@json($json_micropost))['id'];
   let location = {lat:lat, lng: lng}; 
   let options = { zoom: 10, center: location,  disableDoubleClickZoom: true }; 
