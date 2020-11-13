@@ -37,5 +37,5 @@ return [
     
     'gmap-api' => env('GMAP_API_KEY'),
     
-    'url' => env('base_url'),
+    'url' => env('BASE_URL'),
 ];
