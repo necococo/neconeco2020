@@ -118,7 +118,21 @@ class MicropostsController extends Controller
         
         $result = curl_exec($ch);
         $response = json_decode($result, true);
-        dd($response);
+        // dd($response);
+        //array:3 [▼
+        //   "url" => "https://aimaker.io/uptmp/d1b2e9c614f8a1c3017d4f63c8d99a534fe30d5f.jpg"
+        //   "labels" => array:2 [▼
+        //     0 => array:2 [▼
+        //       "score" => 0.999
+        //       "label" => "猫"
+        //     ]
+        //     1 => array:2 [▼
+        //       "score" => 0.001
+        //       "label" => "犬"
+        //     ]
+        //   ]
+        //   "state" => 1
+        // ]
         curl_close($ch);
         //判定が猫かどうかのboolian変数
         $is_cat = $response['labels']['0']['score'] >= 0.7;
@@ -132,7 +146,7 @@ class MicropostsController extends Controller
                 'map_lat' => $request->lat,
                 'map_lng' => $request->lng,
             ]);
-            
+            dd($micropost);
             // s3/images/にアップ
             $path = Storage::disk('s3')->putFile('neconeco2020', $request->file('file'), 'public'); 
             
