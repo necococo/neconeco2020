@@ -98,7 +98,7 @@ class MicropostsController extends Controller
         if ($validator->fails()){
             return back()->withErrors($validator)->withInput();
         }
-        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        
         //ファイルが写真ならば、apiに写真をアップし猫かどうかの判定、猫でなければもう一度アップ画面に遷移、猫なら保存
         $ch = curl_init();
         curl_setopt_array($ch, [
@@ -136,7 +136,7 @@ class MicropostsController extends Controller
         curl_close($ch);
         //判定が猫かどうかのboolian変数
         $cat_p = $response['labels']['0']['score'] ;
-        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        dd($cat_p);
         // dd($request);
         //    +request: ParameterBag {#44 ▼
         //     #parameters: array:4 [▼
