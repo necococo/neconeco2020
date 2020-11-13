@@ -183,15 +183,16 @@ class MicropostsController extends Controller
         // }
         
         if($is_cat) {
-            // $micropost = $request->user()->microposts()->create([
-            //     'search_tag' => $request->search_tag,
-            //     'map_lat' => $request->lat,
-            //     'map_lng' => $request->lng
-            // ]);
-            $micropost->search_tag = $request->search_tag;
-            dd($micropost);
-            $micropost->map_lat = $request->lat;
-            $micropost->map_lng = $request->lng;
+            dd($request->user());
+            $micropost = $request->user()->microposts()->create([
+                'search_tag' => $request->search_tag,
+                'map_lat' => $request->lat,
+                'map_lng' => $request->lng
+            ]);
+            // $micropost->search_tag = $request->search_tag;
+            // dd($micropost);
+            // $micropost->map_lat = $request->lat;
+            // $micropost->map_lng = $request->lng;
             
             //↑ここでHeroku でエラー
             // s3/images/にアップ
