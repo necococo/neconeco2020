@@ -140,13 +140,14 @@ class MicropostsController extends Controller
         if($is_cat) {
             $micropost = $request->user()->microposts()->create([
                 //user_idは自動付加
-                // 'user_id' => $request->user()->id,
+                'user_id' => $request->user()->id,
                 'image_path' => $request->file('file'),
                 'search_tag' => $request->search_tag,
                 'map_lat' => $request->lat,
                 'map_lng' => $request->lng,
             ]);
             dd($micropost);
+            //↑ここでHeroku でエラー
             // s3/images/にアップ
             $path = Storage::disk('s3')->putFile('neconeco2020', $request->file('file'), 'public'); 
             
