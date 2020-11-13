@@ -146,45 +146,51 @@ class MicropostsController extends Controller
         //       "lng" => "131.0687232"
         //     ]
         //   }
+        
+        
+        //↓　user_idは自動付加
+        // 'user_id' => $request->user()->id,
+        //
+        // 'image_path' => $request->file('file'),
+        //"image_path" => UploadedFile {#244 ▼
+        //   -test: false
+        //   -originalName: "519_1-740x493.jpg"
+        //   -mimeType: "image/jpeg"
+        //   -size: 38389
+        //   -error: 0
+        //   #hashName: null
+        //   path: "/tmp"
+        //   filename: "phpQCONvi"
+        //   basename: "phpQCONvi"
+        //   pathname: "/tmp/phpQCONvi"
+        //   extension: ""
+        //   realPath: "/tmp/phpQCONvi"
+        //   aTime: 2020-11-13 11:10:33
+        //   mTime: 2020-11-13 11:10:33
+        //   cTime: 2020-11-13 11:10:33
+        //   inode: 348099
+        //   size: 38389
+        //   perms: 0100600
+        //   owner: 501
+        //   group: 501
+        //   type: "file"
+        //   writable: true
+        //   readable: true
+        //   executable: false
+        //   file: true
+        //   dir: false
+        //   link: false
+        // }
+        
         if($is_cat) {
-            $micropost = $request->user()->microposts()->create([
-                //user_idは自動付加
-                // 'user_id' => $request->user()->id,
-                //
-                // 'image_path' => $request->file('file'),
-                //"image_path" => UploadedFile {#244 ▼
-                //   -test: false
-                //   -originalName: "519_1-740x493.jpg"
-                //   -mimeType: "image/jpeg"
-                //   -size: 38389
-                //   -error: 0
-                //   #hashName: null
-                //   path: "/tmp"
-                //   filename: "phpQCONvi"
-                //   basename: "phpQCONvi"
-                //   pathname: "/tmp/phpQCONvi"
-                //   extension: ""
-                //   realPath: "/tmp/phpQCONvi"
-                //   aTime: 2020-11-13 11:10:33
-                //   mTime: 2020-11-13 11:10:33
-                //   cTime: 2020-11-13 11:10:33
-                //   inode: 348099
-                //   size: 38389
-                //   perms: 0100600
-                //   owner: 501
-                //   group: 501
-                //   type: "file"
-                //   writable: true
-                //   readable: true
-                //   executable: false
-                //   file: true
-                //   dir: false
-                //   link: false
-                // }
-                'search_tag' => $request->search_tag,
-                'map_lat' => $request->lat,
-                'map_lng' => $request->lng,
-            ]);
+            // $micropost = $request->user()->microposts()->create([
+            //     'search_tag' => $request->search_tag,
+            //     'map_lat' => $request->lat,
+            //     'map_lng' => $request->lng
+            // ]);
+            $micropost->search_tag = $request->search_tag;
+            $micropost->map_lat = $request->lat;
+            $micropost->map_lng = $request->lng;
             dd($micropost);
             //↑ここでHeroku でエラー
             // s3/images/にアップ
@@ -195,10 +201,11 @@ class MicropostsController extends Controller
             
             $micropost->save();
             //新規なので空のはず
-            $comments = $micropost->comments()->orderBy('created_at', 'desc')->get();
+            // $comments = $micropost->comments()->orderBy('created_at', 'desc')->get();
             
-            return view('microposts.show', ['micropost' =>$micropost, 'comments'=>$comments ])->with('success','ファイルはアップロードされました。');
+            // return view('microposts.show', ['micropost' =>$micropost, 'comments'=>$comments ])->with('success','ファイルはアップロードされました。');
             // return redirect()->route('microposts.show', ['micropost' =>$micropost, 'comments'=>$comments ])->with('success','ファイルはアップロードされました。');
+            return redirect()->route('microposts.show', ['micropost' =>$micropost])->with('success','ファイルはアップロードされました。');
         }else {
             $cat_error = "この写真はおそらく猫ではありませんね。猫写真をアップしてください。";
 
