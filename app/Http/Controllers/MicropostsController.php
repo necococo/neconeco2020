@@ -198,8 +198,9 @@ class MicropostsController extends Controller
             //生成されたs3上のURLを変数に代入
             $url = Storage::disk('s3')->url($path);
             $micropost->image_path = $url;
-            dd($micropost);
+            
             $micropost->save();
+            dd($micropost);
             //新規なので空のはず
             // $comments = $micropost->comments()->orderBy('created_at', 'desc')->get();
             
