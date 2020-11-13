@@ -12,7 +12,8 @@
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "5.5.*",
         "thomaswelton/laravel-gravatar": "~1.0",
-        "league/flysystem-aws-s3-v3" : "~1.0"
+        "league/flysystem-aws-s3-v3" : "~1.0",
+        "ext-gd": "*"
     },
     "require-dev": {
         "filp/whoops": "~2.0",
