@@ -135,7 +135,7 @@ class MicropostsController extends Controller
         // ]
         curl_close($ch);
         //判定が猫かどうかのboolian変数
-        $is_cat = $response['labels']['0']['score'] >= 0.7;
+        $cat_p = $response['labels']['0']['score'] ;
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // dd($request);
         //    +request: ParameterBag {#44 ▼
@@ -181,8 +181,8 @@ class MicropostsController extends Controller
         //   dir: false
         //   link: false
         // }
-        dd($is_cat);
-        if($is_cat) {
+        
+        if($cat_p >= 0.7) {
             $micropost = $request->user()->microposts()->create([
                 'search_tag' => $request->search_tag,
                 'map_lat' => $request->lat,
