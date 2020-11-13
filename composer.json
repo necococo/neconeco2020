@@ -52,9 +52,9 @@
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover"
         ],
-        "compile": [
-            "@php -r \"file_exists('.env') || copy('.env.heroku', '.env');\""
-        ]
+        // "compile": [
+        //     "@php -r \"file_exists('.env') || copy('.env.heroku', '.env');\""
+        // ]
     },
     "config": {
         "preferred-install": "dist",
