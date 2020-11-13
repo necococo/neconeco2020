@@ -100,51 +100,57 @@ class MicropostsController extends Controller
         }
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         //ファイルが写真ならば、apiに写真をアップし猫かどうかの判定、猫でなければもう一度アップ画面に遷移、猫なら保存
-        // $ch = curl_init();
-        // curl_setopt_array($ch, [
-        //     CURLOPT_URL => "https://aimaker.io/image/classification/api",
-        //     CURLOPT_POST => true,
-        //     CURLOPT_POSTFIELDS => [
-        //         'id' => 5629,
-        //         //公開されているキーなので隠さなくて良い
-        //         'apikey' => "c28f3694803e7631c5feb0831f29be77a0a03197bec8f9d55204f77db57bd7dfb3a10fa3f7d3b0ddf229f1d62a648243",
-        //         // , $_FILES["file"]["type"], $_FILES["file"]["name"]を入れないとエラー
-        //         'file' => new \CURLFile($_FILES["file"]["tmp_name"], $_FILES["file"]["type"], $_FILES["file"]["name"]),
-        //     ],
-        //     CURLOPT_HTTPHEADER => ['Content-Type:multipart/form-data'],
-        //     CURLOPT_SSL_VERIFYPEER => false,
-        //     CURLOPT_RETURNTRANSFER => true,
-        // ]);
+        $ch = curl_init();
+        curl_setopt_array($ch, [
+            CURLOPT_URL => "https://aimaker.io/image/classification/api",
+            CURLOPT_POST => true,
+            CURLOPT_POSTFIELDS => [
+                'id' => 5629,
+                //公開されているキーなので隠さなくて良い
+                'apikey' => "c28f3694803e7631c5feb0831f29be77a0a03197bec8f9d55204f77db57bd7dfb3a10fa3f7d3b0ddf229f1d62a648243",
+                // , $_FILES["file"]["type"], $_FILES["file"]["name"]を入れないとエラー
+                'file' => new \CURLFile($_FILES["file"]["tmp_name"], $_FILES["file"]["type"], $_FILES["file"]["name"]),
+            ],
+            CURLOPT_HTTPHEADER => ['Content-Type:multipart/form-data'],
+            CURLOPT_SSL_VERIFYPEER => false,
+            CURLOPT_RETURNTRANSFER => true,
+        ]);
         
-        // $result = curl_exec($ch);
-        // $response = json_decode($result, true);
-        // // print_r($response);
-        // curl_close($ch);
-        // //判定が猫かどうかのboolian変数
-        // $is_cat = $response['labels']['0']['score'] >= 0.7;
+        $result = curl_exec($ch);
+        $response = json_decode($result, true);
+        // print_r($response);
+        curl_close($ch);
+        //判定が猫かどうかのboolian変数
+        $is_cat = $response['labels']['0']['score'] >= 0.7;
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        
-        // if($is_cat) {
+        if($is_cat) {
             $micropost = $request->user()->microposts()->create([
+                //user_idは自動付加
                 // 'user_id' => $request->user()->id,
                 'image_path' => $request->file('file'),
                 'search_tag' => $request->search_tag,
                 'map_lat' => $request->lat,
                 'map_lng' => $request->lng,
             ]);
+            
             // s3/images/にアップ
             $path = Storage::disk('s3')->putFile('neconeco2020', $request->file('file'), 'public'); 
+            dd($path);
             //生成されたs3上のURLを変数に代入
             $url = Storage::disk('s3')->url($path);
             $micropost->image_path = $url;
-            $micropost->save();
             
-            return redirect()->route('microposts.show', ['id' => $micropost->user_id, 'micropost' =>$micropost ])->with('success','ファイルはアップロードされました。');
-        // }else {
-        //     $cat_error = "この写真はおそらく猫ではありませんね。猫写真をアップしてください。";
+            $micropost->save();
+            //新規なので空のはず
+            $comments = $micropost->comments()->orderBy('created_at', 'desc')->get();
+            
+            return view('microposts.show', ['micropost' =>$micropost, 'comments'=>$comments ])->with('success','ファイルはアップロードされました。');
+            // return redirect()->route('microposts.show', ['micropost' =>$micropost, 'comments'=>$comments ])->with('success','ファイルはアップロードされました。');
+        }else {
+            $cat_error = "この写真はおそらく猫ではありませんね。猫写真をアップしてください。";
 
-        //     return redirect()->back()->with('cat_error',$cat_error);
-        // }
+            return redirect()->back()->with('cat_error',$cat_error);
+        }
     }
     
 
