@@ -181,9 +181,8 @@ class MicropostsController extends Controller
         //   dir: false
         //   link: false
         // }
-        
+        dd($is_cat);
         if($is_cat) {
-            dd($request->user());
             $micropost = $request->user()->microposts()->create([
                 'search_tag' => $request->search_tag,
                 'map_lat' => $request->lat,
