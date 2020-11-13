@@ -182,24 +182,24 @@ class MicropostsController extends Controller
         // }
         
         if($cat_p >= 0.7) {
-            // $micropost = $request->user()->microposts()->create([
-            //     'search_tag' => $request->search_tag,
-            //     'map_lat' => $request->lat,
-            //     'map_lng' => $request->lng
-            // ]);
-            //↑ここでHeroku でエラー
-            $micropost = new Micropost;
-            $micropost->search_tag = $request->search_tag;
-            $micropost->map_lat = $request->lat;
-            $micropost->map_lng = $request->lng;
-            
             // s3/images/にアップ
             $path = Storage::disk('s3')->putFile('neconeco2020', $request->file('file'), 'public'); 
             //生成されたs3上のURLを変数に代入
             $url = Storage::disk('s3')->url($path);
-            $micropost->image_path = $url;
             
-            $micropost->save();
+            $micropost = $request->user()->microposts()->create([
+                'search_tag' => $request->search_tag,
+                'map_lat' => $request->lat,
+                'map_lng' => $request->lng,
+                'image_path' => $url
+            ]);
+            //↑ここでHeroku でエラー
+            // $micropost = new Micropost;
+            // $micropost->search_tag = $request->search_tag;
+            // $micropost->map_lat = $request->lat;
+            // $micropost->map_lng = $request->lng;
+            // $micropost->image_path = $url;
+            // $micropost->save();
             dd($micropost);
             //新規なので空のはず
             // $comments = $micropost->comments()->orderBy('created_at', 'desc')->get();
