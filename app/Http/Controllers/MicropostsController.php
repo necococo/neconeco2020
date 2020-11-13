@@ -118,7 +118,7 @@ class MicropostsController extends Controller
         
         $result = curl_exec($ch);
         $response = json_decode($result, true);
-        // print_r($response);
+        dd($response);
         curl_close($ch);
         //判定が猫かどうかのboolian変数
         $is_cat = $response['labels']['0']['score'] >= 0.7;
@@ -135,7 +135,7 @@ class MicropostsController extends Controller
             
             // s3/images/にアップ
             $path = Storage::disk('s3')->putFile('neconeco2020', $request->file('file'), 'public'); 
-            dd($path);
+            
             //生成されたs3上のURLを変数に代入
             $url = Storage::disk('s3')->url($path);
             $micropost->image_path = $url;
