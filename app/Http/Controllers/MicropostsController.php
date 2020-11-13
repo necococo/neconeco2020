@@ -189,9 +189,10 @@ class MicropostsController extends Controller
             //     'map_lng' => $request->lng
             // ]);
             $micropost->search_tag = $request->search_tag;
+            dd($micropost);
             $micropost->map_lat = $request->lat;
             $micropost->map_lng = $request->lng;
-            dd($micropost);
+            
             //↑ここでHeroku でエラー
             // s3/images/にアップ
             $path = Storage::disk('s3')->putFile('neconeco2020', $request->file('file'), 'public'); 
