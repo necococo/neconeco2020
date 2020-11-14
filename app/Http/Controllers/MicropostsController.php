@@ -143,7 +143,7 @@ class MicropostsController extends Controller
         // ]
         curl_close($ch);
         //判定が猫かどうかのboolian変数
-        $cat_p = $response['labels']['0']['score'] ;
+        $is_cat = $response['labels']['0']['score'] >= 0.7 ;
         // dd($request);
         //    +request: ParameterBag {#44 ▼
         //     #parameters: array:4 [▼
@@ -189,7 +189,7 @@ class MicropostsController extends Controller
         //   link: false
         // }
         
-        if($cat_p >= 0.7) {
+        if($is_cat) {
             // s3/images/にアップ
             $path = Storage::disk('s3')->putFile('neconeco2020', $request->file('file'), 'public'); 
             //生成されたs3上のURLを変数に代入

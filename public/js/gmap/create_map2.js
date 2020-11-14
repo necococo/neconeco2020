@@ -4,6 +4,11 @@ function initMap() {
   
   
     if (navigator.geolocation) {
+      let pos_options={                         
+        enableHighAccuracy: false,   // 高精度を要求しない  
+        timeout: 30000,             // 最大待ち時間（ミリ秒）  
+        maximumAge: 0               // キャッシュ有効期間（ミリ秒）  
+      };            
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const pos = {

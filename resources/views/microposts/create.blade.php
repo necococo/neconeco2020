@@ -56,6 +56,7 @@
                         {!! Form::hidden('lng', null, ['id' => 'lng']) !!} 
                         
                         <p><span class="bold">現在位置   　</span><span id="location"></span>（精度:半径 <span id="accuracy"></span> m）</p>
+                        <p id="error_message"></p>
                         <!--マップ-->
                         <div id="map"></div>
                         
@@ -66,7 +67,7 @@
         </div>   
     </div>
    
-    <script src="{{ secure_asset('/js/gmap/create_map2.js') }}"></script>
+    <script src="{{ secure_asset('/js/gmap/create_map.js') }}"></script>
     <script src="{{ secure_asset('js/validate_file.js') }}"></script>
 @endif
 <script src="https://maps.googleapis.com/maps/api/js?key={{config('services.gmap-api')}}&callback=initMap"  async defer></script>
