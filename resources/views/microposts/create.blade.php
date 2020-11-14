@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<?php ini_set('display_errors',1); ?>
+
 <div class="row">
     
     <aside class="col-xs-4 col-md-2">
@@ -69,7 +69,7 @@
     <script src="{{ secure_asset('/js/gmap/create_map2.js') }}"></script>
     <script src="{{ secure_asset('js/validate_file.js') }}"></script>
 @endif
-<script async defer src="https://maps.googleapis.com/maps/api/js?key={{config('services.gmap-api')}}&callback=initMap" ></script>
+<script src="https://maps.googleapis.com/maps/api/js?key={{config('services.gmap-api')}}&callback=initMap"  async defer></script>
 
 
 @endsection

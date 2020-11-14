@@ -18,7 +18,7 @@ class CreateCommentsTable extends Migration
             $table->integer('micropost_id')->unsigned()->index();
             $table->integer('user_id')->unsigned()->index();
             // $table->string('user_name');
-            $table->string('comment');
+            $table->string('comment')->nullable()->default(null);
             $table->timestamps();
             
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

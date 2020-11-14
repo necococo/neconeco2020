@@ -29,11 +29,16 @@ class MicropostsController extends Controller
     {
         $user = \Auth::user();
         $micropost = Micropost::find($id);
-        $json_micropost = $micropost->toJson();
-        $comments = $micropost->comments()->orderBy('created_at', 'desc')->get();
-        $data = ['user' => $user, 'micropost' => $micropost, 'comments'=>$comments];
+        // $json_micropost = $micropost->toJson();
+        $json_micropost = json_encode($micropost);
+        if($micropost->comments()) {
+            $comments = $micropost->comments()->orderBy('created_at', 'DESC')->get();
+            $data = ['user' => $user, 'micropost' => $micropost, 'comments'=>$comments, 'json_micropost'=>$json_micropost];
+        }else {
+            $data = ['user' => $user,'micropost' => $micropost,'json_micropost'=>$json_micropost];
+        }
         
-        return view('microposts.show',$data, ['json_micropost'=>$json_micropost]);
+        return view('microposts.show',$data);
     }
     
       //編集    
@@ -44,7 +49,7 @@ class MicropostsController extends Controller
         $micropost = Micropost::find($id);
    
         // dd($micropost->map_lng);
-        $comments = $micropost->comments()->orderBy('created_at', 'desc')->get();
+        $comments = $micropost->comments()->orderBy('created_at', 'DESC')->get();
         $data = ['user' => $user, 'micropost' => $micropost, 'comments'=>$comments];
         return view('microposts.edit',$data);
         
@@ -68,8 +73,11 @@ class MicropostsController extends Controller
         $micropost = Micropost::find($id);
         $micropost->search_tag = $request->search_tag;
         $micropost->save();
-        $json_micropost = $micropost->toJson();
+        // $json_micropost = $micropost->toJson();
+        $json_micropost = json_encode($micropost);
         $comments = $micropost->comments()->orderBy('created_at', 'desc')->get();
+        
+        
         $data = ['user' => $user, 'micropost' => $micropost, 'comments'=>$comments];
         return view('microposts.show', $data, ['json_micropost'=>$json_micropost])->with('updated','データは更新されました。');
     }
@@ -252,7 +260,9 @@ class MicropostsController extends Controller
     {
         $microposts = DB::table('microposts')->get();
         //<script></script>へ渡すためにjson形式へ変換
-        $microposts = $microposts->toJson();
+        // $microposts = $microposts->toJson();
+        $microposts = json_encode($microposts);
+
         // dd($microposts);
         return view('microposts.all_map', ['microposts' => $microposts]);
     }

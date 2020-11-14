@@ -1,7 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-
+<?php
+ini_set('display_errors',1);
+?>
 <div class="container">
     <div style="padding-left:0px;" class="col-xs-12 col-md-12">
     @if (\Session::has('success'))
@@ -68,19 +70,21 @@
                         <hr>
                     
                         <ul id="media-list" class="media-list">
-                            @foreach($comments as $comment)
-                                <li class="media">
-                                    <div class="media-body">
-                                        <span class="text-muted pull-right">
-                                            <small class="text-muted">{{ $comment->created_at }}</small>
-                                        </span>
-                                        <span class="text-success">{!! link_to_route('users.show', $comment->user->name, ['id' => $comment->user_id]) !!}</span>
-                                        <p>
-                                            {!! nl2br(e($comment->comment)) !!}
-                                        </p>
-                                    </div>
-                                </li>
-                            @endforeach
+                            @if($comments)
+                                @foreach($comments as $comment)
+                                    <li class="media">
+                                        <div class="media-body">
+                                            <span class="text-muted pull-right">
+                                                <small class="text-muted">{{ $comment->created_at }}</small>
+                                            </span>
+                                            <span class="text-success">{!! link_to_route('users.show', $comment->user->name, ['id' => $comment->user_id]) !!}</span>
+                                            <p>
+                                                {!! nl2br(e($comment->comment)) !!}
+                                            </p>
+                                        </div>
+                                    </li>
+                                @endforeach
+                            @endif
                         </ul>
                     </div>
                 </div>
@@ -90,6 +94,7 @@
 </div>
 
 <script>
+
 function show_map() {
   let lat = parseFloat(JSON.parse(@json($json_micropost))['map_lat']);
   let lng = parseFloat(JSON.parse(@json($json_micropost))['map_lng']);
@@ -100,8 +105,15 @@ function show_map() {
   let map = new google.maps.Map(document.getElementById('show_map'), options);
   let marker=new google.maps.Marker({position: location, map: map, label: ""+id,});
 }
+window.onload = function() {
+    fetch("getapijs.php")
+   .then( res => res.text() )
+   .then(mytext => eval(mytext) )
+   .then( () => show_map() )
+   .catch( () => alert('error') );
+}
 </script> 
 
-<script src="https://maps.googleapis.com/maps/api/js?key={{config('services.gmap-api')}}&callback=show_map" async defer></script>
+<!--<script src="https://maps.googleapis.com/maps/api/js?key={{config('services.gmap-api')}}&callback=show_map" async defer></script>-->
 
 @endsection
