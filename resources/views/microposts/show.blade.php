@@ -105,15 +105,15 @@ function show_map() {
   let map = new google.maps.Map(document.getElementById('show_map'), options);
   let marker=new google.maps.Marker({position: location, map: map, label: ""+id,});
 }
-window.onload = function() {
-    fetch("getapijs.php")
-   .then( res => res.text() )
-   .then(mytext => eval(mytext) )
-   .then( () => show_map() )
-   .catch( () => alert('error') );
-}
+// window.onload = function() {
+//     fetch("getapijs.php")
+//   .then( res => res.text() )
+//   .then(mytext => eval(mytext) )
+//   .then( () => show_map() )
+//   .catch( () => alert('error') );
+// }
 </script> 
 
-<!--<script src="https://maps.googleapis.com/maps/api/js?key={{config('services.gmap-api')}}&callback=show_map" async defer></script>-->
+<script src="https://maps.googleapis.com/maps/api/js?key={{config('services.gmap-api')}}&callback=show_map" async defer></script>
 
 @endsection
