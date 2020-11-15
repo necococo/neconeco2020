@@ -24,7 +24,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     
-                    <li><a href="/usage">使い方</a></li>
+                    <li><a href="/usage">概要と使い方</a></li>
                 @if (Auth::check())
                     <li><a href="/">All Cats Photos</a></li> 
                     <li>{!! link_to_route('microposts.all_map','All Photos Map') !!}</li>
