@@ -10,7 +10,7 @@
             <br>
             @if (Auth::id() === $micropost->user_id)
                 {!! Form::open(['route' => ['microposts.update', $micropost->id], 'method' => 'PUT']) !!}   
-                    <div class="form-group" style="width: 50%">
+                    <div class="form-group" style="width: 50%; margin-top:20px;">
                         {!! Form::label('search_tag', '検索タグを更新') !!}
                         {!! Form::text('search_tag', null,['class' => 'form-control']) !!}    
                     </div>
