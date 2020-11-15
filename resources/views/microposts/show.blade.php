@@ -93,18 +93,6 @@
 <!--<script src="https://maps.googleapis.com/maps/api/js?key={{config('services.gmap-api')}}&callback=show_map" async defer></script>-->
 
 <script>
-
-function show_map() {
-  let lat = parseFloat(JSON.parse(@json($json_micropost))['map_lat']);
-  let lng = parseFloat(JSON.parse(@json($json_micropost))['map_lng']);
-//   console.log(lat, lng);
-  let id = JSON.parse(@json($json_micropost))['id'];
-  let location = {lat:lat, lng: lng}; 
-  let options = { zoom: 10, center: location,  disableDoubleClickZoom: true }; 
-  let map = new google.maps.Map(document.getElementById('show_map'), options);
-  let marker=new google.maps.Marker({position: location, map: map, label: ""+id,});
-}
-
 function fetch_google() {
      fetch("getapijs.py").then(res=>{
      // CGI 実行して、結果の TEXT だけを次にパスする   
@@ -119,6 +107,19 @@ function fetch_google() {
          alert("error fetch_google()");
      });
  }
+ 
+function show_map() {
+  let lat = parseFloat(JSON.parse(@json($json_micropost))['map_lat']);
+  let lng = parseFloat(JSON.parse(@json($json_micropost))['map_lng']);
+//   console.log(lat, lng);
+  let id = JSON.parse(@json($json_micropost))['id'];
+  let location = {lat:lat, lng: lng}; 
+  let options = { zoom: 10, center: location,  disableDoubleClickZoom: true }; 
+  let map = new google.maps.Map(document.getElementById('show_map'), options);
+  let marker=new google.maps.Marker({position: location, map: map, label: ""+id,});
+}
+
+
 </script> 
 
 <!--<script src="https://maps.googleapis.com/maps/api/js?key={{config('services.gmap-api')}}&callback=show_map" async defer></script>-->
