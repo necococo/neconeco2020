@@ -1,19 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
-<?php
-ini_set('display_errors',1);
-?>
+
 <!--<script src="https://maps.googleapis.com/maps/api/js?key={{config('services.gmap-api')}}&callback=show_map" async defer></script>-->
 
-<!--<div class="col-xs-12 col-md-12">-->
+<!--セッションアラート　アップロードされました-->
 @if (\Session::has('success'))
     <div class="alert alert-success">{!! \Session::get('success') !!}</div>
 @endif
 
 <div id="show_cat_and_show_data">
     <!--猫写真-->
-    
     <img id="show_cat" src="{{ secure_asset($micropost->image_path)}}">
     
     <!--投稿データとボタン-->
@@ -100,7 +97,7 @@ ini_set('display_errors',1);
 function show_map() {
   let lat = parseFloat(JSON.parse(@json($json_micropost))['map_lat']);
   let lng = parseFloat(JSON.parse(@json($json_micropost))['map_lng']);
-  console.log(lat, lng);
+//   console.log(lat, lng);
   let id = JSON.parse(@json($json_micropost))['id'];
   let location = {lat:lat, lng: lng}; 
   let options = { zoom: 10, center: location,  disableDoubleClickZoom: true }; 
@@ -108,8 +105,22 @@ function show_map() {
   let marker=new google.maps.Marker({position: location, map: map, label: ""+id,});
 }
 
+function fetch_google() {
+     fetch("getapijs.py").then(res=>{
+     // CGI 実行して、結果の TEXT だけを次にパスする   
+         return res.text();
+     }).then(mytext => {
+     // 受け取った javascript を EVAL で実行する。
+         eval(mytext);
+     }).then(() => {
+     // 実行後の処理。公式サンプル HTML が &callback= でコールしていた部分
+         show_map();
+     }).catch(() =>{
+         alert("error fetch_google()");
+     });
+ }
 </script> 
 
-<script src="https://maps.googleapis.com/maps/api/js?key={{config('services.gmap-api')}}&callback=show_map" async defer></script>
+<!--<script src="https://maps.googleapis.com/maps/api/js?key={{config('services.gmap-api')}}&callback=show_map" async defer></script>-->
 
 @endsection
