@@ -31,6 +31,7 @@ class MicropostsController extends Controller
         $micropost = Micropost::find($id);
         // $json_micropost = $micropost->toJson();
         $json_micropost = json_encode($micropost);
+        //なんかエラーが出るときがあったのでif文にした
         if($micropost->comments()) {
             $comments = $micropost->comments()->orderBy('created_at', 'DESC')->get();
             $data = ['user' => $user, 'micropost' => $micropost, 'comments'=>$comments, 'json_micropost'=>$json_micropost];

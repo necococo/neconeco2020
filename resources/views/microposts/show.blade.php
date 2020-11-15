@@ -2,8 +2,6 @@
 
 @section('content')
 
-<!--<script src="https://maps.googleapis.com/maps/api/js?key={{config('services.gmap-api')}}&callback=show_map" async defer></script>-->
-
 <!--セッションアラート　アップロードされました-->
 @if (\Session::has('success'))
     <div class="alert alert-success">{!! \Session::get('success') !!}</div>
@@ -90,38 +88,41 @@
     </div>
 <!--</div>-->
 
-<!--<script src="https://maps.googleapis.com/maps/api/js?key={{config('services.gmap-api')}}&callback=show_map" async defer></script>-->
+
+<!--<script>-->
+<!--window.onload = function() {-->
+<!--    fetch("./getapijs.php").then(res=>{-->
+<!--    console.log(res.text());-->
+<!--        // CGI 実行して、結果の TEXT だけを次にパスする-->
+<!--        return res.text();-->
+<!--    }).then(mytext => {-->
+<!--        // 受け取った javascript を EVAL で実行する。-->
+<!--        console.log(text);-->
+<!--        eval(mytext);-->
+<!--    }).then(() => {-->
+<!--        // 実行後の処理。公式サンプル HTML が &callback= でコールしていた部分-->
+<!--        show_map();-->
+<!--    }).catch(() =>{-->
+<!--        // お好きなエラー処理をどうぞ-->
+<!--        alert("fetch error");-->
+<!--    });-->
+<!--};-->
+<!--</script> -->
 
 <script>
-function fetch_google() {
-     fetch("getapijs.py").then(res=>{
-     // CGI 実行して、結果の TEXT だけを次にパスする   
-         return res.text();
-     }).then(mytext => {
-     // 受け取った javascript を EVAL で実行する。
-         eval(mytext);
-     }).then(() => {
-     // 実行後の処理。公式サンプル HTML が &callback= でコールしていた部分
-         show_map();
-     }).catch(() =>{
-         alert("error fetch_google()");
-     });
- }
- 
 function show_map() {
   let lat = parseFloat(JSON.parse(@json($json_micropost))['map_lat']);
   let lng = parseFloat(JSON.parse(@json($json_micropost))['map_lng']);
-//   console.log(lat, lng);
+  //console.log(lat, lng);
   let id = JSON.parse(@json($json_micropost))['id'];
   let location = {lat:lat, lng: lng}; 
   let options = { zoom: 10, center: location,  disableDoubleClickZoom: true }; 
   let map = new google.maps.Map(document.getElementById('show_map'), options);
   let marker=new google.maps.Marker({position: location, map: map, label: ""+id,});
 }
-
-
 </script> 
 
-<!--<script src="https://maps.googleapis.com/maps/api/js?key={{config('services.gmap-api')}}&callback=show_map" async defer></script>-->
+
+<script src="https://maps.googleapis.com/maps/api/js?key={{config('services.gmap-api')}}&callback=show_map" defer></script>
 
 @endsection

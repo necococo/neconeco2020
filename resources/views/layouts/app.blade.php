@@ -13,7 +13,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
         <!--<script src="https://code.jquery.com/ui/1.10.0/jquery-ui.js"></script>-->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+        
     </head>
     <body>
         <?php ini_set('display_errors',1); ?>
@@ -26,6 +26,11 @@
             @yield('content')
             
         </div>
-        
+        <noscript>
+        <p>
+        このサイトではJavaScriptを使用しています
+        </p>
+        </noscript>
+        <script>document.body.oncontextmenu = function () {return false;}</script>
     </body>
 </html>
