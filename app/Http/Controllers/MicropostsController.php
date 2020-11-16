@@ -145,7 +145,7 @@ class MicropostsController extends Controller
         // ]
         curl_close($ch);
         //判定が猫かどうかのboolian変数
-        $is_cat = $response['labels']['0']['score'] >= 0.7 ;
+        $is_cat = $response['labels']['0']['score'] >= 0.6 ;
         // dd($request);
         //    +request: ParameterBag {#44 ▼
         //     #parameters: array:4 [▼
