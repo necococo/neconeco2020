@@ -11,7 +11,7 @@
 |
 */
 //トップ
-Route::get('/', 'MicropostsController@index');
+Route::get('/', 'MicropostsController@index')->name('microposts.index');;
 Route::get('/usage', function () {
     return view('usage');
 });

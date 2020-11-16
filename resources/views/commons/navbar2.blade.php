@@ -10,6 +10,7 @@
 					<span class="icon-bar"></span>
 				</button>
 				<a class="navbar-brand" href="/">NecoNeco</a>
+				<!--<li>{!! link_to_route('microposts.index', 'NecoNeco', ['class'=>'navbar-brand']) !!}</li>-->
 			</div>
 
 			<!-- Collect the nav links, forms, and other content for toggling -->
