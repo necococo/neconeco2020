@@ -1,8 +1,38 @@
+html ,body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+
+
+footer{
+    width: 100%;
+    height: 30px;
+    /*background-color: black;*/
+    /*color: white;*/
+    text-align: center;
+    margin-top: auto;
+}
+
+
 .container {
     margin:0 auto;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    
+}
+
+section {
+    margin-bottom: 40px;
 }
 
 a .float {float:left}
+
+hr {
+    margin:40px 0; 
+}
 
 ul {padding-left:0px;}
 
@@ -198,7 +228,15 @@ aside .col-xs-6 ,.col-md-4{
     #all_map {height:1024px;}
 }
 
-.usage-text {
+
+
+.usage-texts {
     max-width: 768px;
     margin: 0 auto;
+}
+
+
+.usage-img{
+    width:50%;
+    height: auto;
 }

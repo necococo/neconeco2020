@@ -4,7 +4,7 @@ function initMap() {
     if (window.navigator.geolocation) {  
             // 位置情報の取得  
             const pos_options={                         
-                enableHighAccuracy: false,   // 高精度を要求しない 
+                enableHighAccuracy: true,   // 高精度を要求する?->true 
                 timeout: 10000,             // 最大待ち時間（ミリ秒）  
                 maximumAge: 0               // キャッシュ有効期間（ミリ秒）  
             }; 

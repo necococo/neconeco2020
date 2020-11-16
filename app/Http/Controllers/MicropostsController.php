@@ -17,13 +17,14 @@ class MicropostsController extends Controller
     {
         
         if (\Auth::check()) {
-            $microposts = DB::table('microposts')->orderBy('created_at', 'desc')->paginate(8);
+            $microposts = DB::table('microposts')->orderBy('created_at', 'desc')->paginate(20);
             return view('microposts.index', ['microposts' => $microposts]);
         }else {
-            return view('welcome');
+            $microposts = DB::table('microposts')->orderBy('created_at', 'desc')->paginate(5);
+            return view('welcome', ['microposts' => $microposts]);
         }
     }
-   
+
 
     public function show($id)
     {

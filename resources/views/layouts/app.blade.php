@@ -15,22 +15,31 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         
     </head>
+    
     <body>
+    
+        <!--console networkにエラーがある場合は表示-->
         <?php ini_set('display_errors',1); ?>
         
-        @include('commons.navbar')
-        
-        <div class="container">
-        
-            @include('commons.error_messages')
-            @yield('content')
+            <!--javascript offの時の表示-->
+            <noscript><p>このサイトではJavaScriptを使用しています</p></noscript>
             
-        </div>
-        <noscript>
-        <p>
-        このサイトではJavaScriptを使用しています
-        </p>
-        </noscript>
-        <script>document.body.oncontextmenu = function () {return false;}</script>
+        
+            @include('commons.navbar')
+            
+            <div class="container">
+                @include('commons.error_messages')
+                @yield('content')
+            </div>
+           
+            
+            <footer>
+                <div class="">
+                 © 2020 Copyright KM
+                </div>
+            </footer>
+    <!--右クリック禁止-->
+    <script>document.oncontextmenu = function () {return false;}</script>
     </body>
+    
 </html>

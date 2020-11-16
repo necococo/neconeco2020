@@ -1,46 +1,55 @@
 @extends('layouts.app')
 @section('content')
-<h1 style="text-align:center;">Welcome to the NecoNeco</h1>
-<br>
-<br>
-<div class="usage-text">
-    <h3>概要</h3>
-    <p>
-    　猫の写真やイラストと投稿位置（精度は低くしてあるニャン）を共有できるSNSだニャン<br>
-    　猫かどうかはAIが判定するニャン<br>
-    　SNSなのでユーザー同士のフォローや、写真にお気に入りやコメントができるニャン<br>
-    　迷子の猫が見つかるかもニャン、生態調査などにも応用可能かもニャン</p>
-    <br>
-    <br>
-    <h3>初めての方へ　使い方ニャン</h3>
-    <br>
-    <br>
-    <p>1.ユーザー名と仮のメールアドレス（現段階ではconfirmなし）とパスワードで登録できるニャン</p>
-    @if (!Auth::check())
-        {!! link_to_route('signup.get', 'signup') !!}
-    @endif
+<h1 style="text-align: center; margin-bottom:50px;">Welcome to the NecoNeco</h1>
+
+
+
     
-    <br>
-    <br>
-    <p>2.まずは投稿してみてくれニャン（削除もできるニャン）<br>
-    　上の方の黒いナビバーの右端のユーザー名をクリック（タップ）するとMy_profileタグが現れるニャン</p>
-    <br>
-    <br>
-    <p>3.ナビバーの下に5つの自分用のタブが現れるので一番左のNew Postをクリックしてくれニャン<br>
-    （ナビバーの右から二番めでも同じページに飛ぶニャン）</p>
-    <br>
-    <br>
-    <p>4.位置情報の取得の可否のアラートが出るので選んで、猫の写真、写真検索タグを決めたらUploadボタンを押すニャン<br>
+<h3 style="text-align: center;">使い方</h3>
+    
+    
+<div class="usage-texts">       
+    <hr>
+    <p>1.ユーザー名と仮のメールアドレス（現段階ではconfirmなし）とパスワードで登録できるニャン</p>
+    
+    
+
+    <hr>
+    <p>2.まずは投稿してみてくれニャン（削除もできるニャン）
+    　上の方の黒いナビバーの「ユーザー名」をクリック（タップ）すると「My_profile」タグが現れるニャン</p>
+　  <p><img class="usage-img" src="https://hige-oji-s3-bucket.s3.amazonaws.com/neconeco2020/usage/usage-2.png"></p>
+　  
+　  
+    <hr>
+    <p>3.ナビバーの下に5つの自分用のタブが現れるのでNew Postをクリックしてくれニャン
+    （ナビバーのNew Postでも同じページに飛ぶニャン）</p>
+    <p><img class="usage-img" src="https://hige-oji-s3-bucket.s3.amazonaws.com/neconeco2020/usage/usage-3.png"></p>
+   
+    
+    <hr>
+    <p>4.位置情報の取得の可否のアラートが出るので選んで、猫の写真、写真検索タグを決めたらUploadボタンを押すニャン
     （位置情報を送信しない場合は、All Phots Mapにピンが立たなくなるニャン）</p>
-    <br>
-    <br>
-    <p>5.投稿したら、ナビバーのAll Photos Mapで投稿写真の位置が地図上に表示されるニャン<br>
+   
+    
+    <hr>
+    <p>5.投稿したら、ナビバーのAll Photos Mapで投稿写真の位置が地図上に表示されるニャン
     （マップのピンをクリックすると、そこで撮られた写真の詳細ページに飛ぶニャン）</p>
-    <br>
-    <br>
-    <p>6.All Cats Photosや他のユーザーのプロファイルのPhotosから個々の写真をクリックするとお気に入りやコメントができるニャン</p>
-    <br>
-    <br>
+    <p><img class="usage-img" src="https://hige-oji-s3-bucket.s3.amazonaws.com/neconeco2020/usage/usage-5.png"></p>
+   
+    
+    <hr>
+    <p>6.写真がならんでいるところから一つの写真をクリックすると詳細ページに飛んでお気に入りやコメントができるニャン</p>
+   
+    
+    <hr>
     <p>7.検索バーで写真検索もできるニャン(半角,でつなげるとor検索になるニャン)</p>
+     <hr>
+    
+    <div style="text-align: center; margin: 30px 0 95px 0">
+    @if (!Auth::check())
+        {!! link_to_route('signup.get', 'Sign up now!', null, ['class' => 'btn btn-lg btn-primary']) !!}
+    @endif
+    </div>
+    
 </div>
 @endsection
