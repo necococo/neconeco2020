@@ -32,7 +32,7 @@
             </div>
          </div class="wrapper-end">
        
-        
+         
         <footer>
             <div class="">
              © 2020 Copyright KM
@@ -44,7 +44,8 @@
         
         <!--javascript offの時の表示-->
         <noscript><p>このサイトではJavaScriptを使用しています</p></noscript>
-    {{ secure_asset("js/navbar_action.js") }}        
+        
+        <script src="{{ secure_asset("js/navbar_action.js") }}" ></script>        
     </body>
     
 </html>
