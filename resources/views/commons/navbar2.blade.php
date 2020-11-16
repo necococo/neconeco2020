@@ -40,12 +40,11 @@
                         <li>{!! link_to_route('users.index','Other Users') !!}</li>
                         <li>{!! link_to_route('microposts.create','New Post') !!}</li>
                         
-        				
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li>{!! link_to_route('users.show', 'My_profile', ['id'=>Auth::id()]) !!}</li>
-                                <li role="separator" class="divider"></li>
+                                <li class="divider"></li>
                                 <li>{!! link_to_route('logout.get', 'Logout') !!}</li>
                             </ul>
                         </li>
@@ -53,12 +52,11 @@
                         <li>{!! link_to_route('signup.get', 'Signup') !!}</li>
                         <li>{!! link_to_route('login', 'Login') !!}</li>
                     @endif
-						
 				</ul>
 				@if(Auth::check())
                     <!--//serach-bar-->
                     <form class="navbar-form" action="/microposts/search" method="GET" role="search">
-    					<div class="input-group">
+    					<div id="search_field" class="input-group">
     						<input type="text" class="form-control" name="search_words" placeholder="search">
     						<span class="input-group-btn">
     							<button type="reset" class="btn btn-default">
@@ -79,5 +77,14 @@
 		<!--</div><!-- /.container-fluid -->
 	</nav>
 	
+	<!--<div class="container">-->
+ <!--   	<div class="row">-->
+ <!--   		<div class="alert alert-info">-->
+ <!--               <strong>Alerts Dont Work on Bootsnipp!</strong> So when you hit enter or submit this form your result will show up in the green box below!-->
+ <!--           </div>-->
+ <!--           <div class="alert alert-success">-->
+ <!--               <strong>Your Result!</strong> <span id="showSearchTerm"></span>-->
+ <!--           </div>-->
+ <!--   </div>-->
 	
 </header>

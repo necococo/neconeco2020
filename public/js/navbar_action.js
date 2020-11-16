@@ -26,12 +26,12 @@ $(function () {
 	});
 	// ONLY FOR DEMO // Please use $('form').submit(function(event)) to track from submission
 	// if your form is ajax remember to call `closeSearch()` to close the search container
-	$(document).on('click', '.navbar-collapse form[role="search"].active button[type="submit"]', function(event) {
-		event.preventDefault();
-		var $form = $(this).closest('form'),
-			$input = $form.find('input');
-		$('#showSearchTerm').text($input.val());
-        closeSearch()
-	});
+// 	$(document).on('click', '.navbar-collapse form[role="search"].active button[type="submit"]', function(event) {
+// 		event.preventDefault();
+// 		var $form = $(this).closest('form'),
+// 			$input = $form.find('input');
+// 		$('#showSearchTerm').text($input.val());
+//         closeSearch()
+// 	});
 });
    
