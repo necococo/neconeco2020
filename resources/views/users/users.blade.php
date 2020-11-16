@@ -1,5 +1,5 @@
 @if (count($users) > 0)
-{!! $users->render() !!}
+
 <ul class="media-list">
 @foreach ($users as $user)
     @if($user!=Auth::user())
@@ -21,6 +21,7 @@
     @endif
 @endforeach
 </ul>
+{!! $users->render()!!}
 <!--<script src="{{ secure_asset('js/store_sort_order.js') }}"></script>-->
 
 @endif

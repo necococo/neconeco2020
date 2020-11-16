@@ -30,7 +30,7 @@
            
     </div>
 	<div class="row show">	
-    	{!! $microposts->render() !!}
+    	
     	@if (\Session::has('success'))
             <div class="alert alert-success">{!! \Session::get('success') !!}</div>
         @endif
@@ -40,6 +40,7 @@
        			<img class="cat_image" src="{{ secure_asset($micropost->image_path)}}"></a>
     		@endforeach
     	</ul>
+    	{!! $microposts->render() !!}
 	</div>
 
 <!--<script src="{{ secure_asset('js/store_sort_order.js') }}"></script>-->

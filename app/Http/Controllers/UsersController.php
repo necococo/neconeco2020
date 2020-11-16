@@ -10,7 +10,7 @@ class UsersController extends Controller
 {
     public function index()
     {
-        $users = User::orderBy('created_at', 'desc')->paginate(5);
+        $users = User::orderBy('created_at', 'desc')->paginate(50);
         
         return view('users.index', [
             'users' => $users,
@@ -21,7 +21,7 @@ class UsersController extends Controller
     public function show($id)
     {
         $user = User::find($id);
-        $microposts = $user->microposts()->orderBy('created_at', 'desc')->paginate(8);
+        $microposts = $user->microposts()->orderBy('created_at', 'desc')->paginate(20);
         $data = ['user' => $user,'microposts' => $microposts];
         $data += $this->counts($user);
 
@@ -61,7 +61,7 @@ class UsersController extends Controller
     public function followings($id)
     {
         $user = User::find($id);
-        $followings = $user->followings()->orderBy('created_at', 'desc')->paginate(5);
+        $followings = $user->followings()->orderBy('created_at', 'desc')->paginate(50);
 
         $data = [
             'user' => $user,
@@ -78,7 +78,7 @@ class UsersController extends Controller
     public function followers($id)
     {
         $user = User::find($id);
-        $followers = $user->followers()->orderBy('created_at', 'desc')->paginate(5);
+        $followers = $user->followers()->orderBy('created_at', 'desc')->paginate(50);
         
         $data = [
             'user' => $user,
@@ -121,7 +121,7 @@ class UsersController extends Controller
     public function favoritings($id)
     {
         $user = User::find($id);
-        $favoritings = $user->favoritings()->orderBy('created_at', 'desc')->paginate(5);
+        $favoritings = $user->favoritings()->orderBy('created_at', 'desc')->paginate(20);
         
         $data = [
             'user' => $user,

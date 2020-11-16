@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-{!! $microposts->render() !!}
+
 <div>
 	<ul>
 	@foreach ($microposts as $micropost)
@@ -9,7 +9,8 @@
    		<img class="cat_image" src="{{ secure_asset($micropost->image_path)}}"></a>
 	@endforeach
 	</ul>
+	{!! $microposts->render() !!}
 </div>
-{!! $microposts->render() !!}
+
 <!--<script src="{{ secure_asset('js/store_sort_order.js') }}"></script>-->
 @endsection

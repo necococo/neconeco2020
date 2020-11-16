@@ -20,7 +20,7 @@ class MicropostsController extends Controller
             $microposts = DB::table('microposts')->orderBy('created_at', 'desc')->paginate(20);
             return view('microposts.index', ['microposts' => $microposts]);
         }else {
-            $microposts = DB::table('microposts')->orderBy('created_at', 'desc')->paginate(5);
+            $microposts = DB::table('microposts')->orderBy('created_at', 'desc')->paginate(10);
             return view('welcome', ['microposts' => $microposts]);
         }
     }
