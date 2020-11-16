@@ -193,7 +193,7 @@ class MicropostsController extends Controller
         
         if($is_cat) {
             // s3/images/にアップ
-            $path = Storage::disk('s3')->putFile('neconeco2020', $request->file('file'), 'public'); 
+            $path = Storage::disk('s3')->putFile('neconeco2020/images', $request->file('file'), 'public'); 
             //生成されたs3上のURLを変数に代入
             $url = Storage::disk('s3')->url($path);
             
