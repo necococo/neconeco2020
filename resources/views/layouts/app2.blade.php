@@ -23,10 +23,11 @@
         
         @include('commons.navbar')
         
-        <div class="container">
+         <div class="wrapper">
+            <div class="container-fluid">
             @include('commons.error_messages')
             @yield('content')
-        </div>
+         </div class="wrapper-end">
        
         
         <footer>
