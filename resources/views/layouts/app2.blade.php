@@ -8,7 +8,7 @@
         <title>NecoNeco</title>
         
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="{{ secure_asset('css/main.css') }}" media="all">
+        <link rel="stylesheet" type="text/css" href="{{ secure_asset('css/main2.css') }}" media="all">
         <link rel="icon" type="image/png" href="https://hige-oji-s3-bucket.s3.amazonaws.com/neconeco2020/favicon/apple-touch-icon.png"">
         <link rel="apple-touch-icon" href="https://hige-oji-s3-bucket.s3.amazonaws.com/neconeco2020/favicon/apple-touch-icon.png" sizes="180x180">
         <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
@@ -23,7 +23,7 @@
         <!--console networkにエラーがある場合は表示-->
         <!--<?php ini_set('display_errors',1); ?>-->
         
-        @include('commons.navbar')
+        @include('commons.navbar2')
         
          <div class="wrapper">
             <div class="container-fluid">
@@ -44,7 +44,7 @@
         
         <!--javascript offの時の表示-->
         <noscript><p>このサイトではJavaScriptを使用しています</p></noscript>
-            
+    {{ secure_asset("js/navbar_action.js") }}        
     </body>
     
 </html>
