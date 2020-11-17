@@ -14,18 +14,21 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <!--検索バー-->
                     <ul class="nav navbar-nav">
-                        <li>
-                            <form id="search-box" action="/microposts/search" method="GET">
-                              　<div id="search_field" class="input-group">
-                                    <input  type="text" class="form-control" name="search_words"  placeholder=",でOR検索">
-                                    <span class="input-group-btn">
-                                    	<button type="submit" class="btn btn-default">Search</button>
-                                    </span>
-                                </div>
-                            </form>
-                        </li>
+                        @if(Auth::check())
+                            <li>
+                                <form id="search-box" action="/microposts/search" method="GET">
+                                  　<div id="search_field" class="input-group">
+                                        <input  type="text" class="form-control" name="search_words"  placeholder=",でOR検索">
+                                        <span class="input-group-btn">
+                                        	<button type="submit" class="btn btn-default">Search</button>
+                                        </span>
+                                    </div>
+                                </form>
+                            </li>
+                        @endif
                     </ul>
-            
+                    
+                    
                     <ul class="nav navbar-nav navbar-right">
                      
                         <li><a href="/usage">Usage</a></li>
