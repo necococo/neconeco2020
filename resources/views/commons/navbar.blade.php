@@ -11,20 +11,21 @@
                 <!--タイトル-->
                 <a class="navbar-brand" href="/">NecoNeco</a>
                 <!--検索バー-->
-                <form id="search" action="/microposts/search" method="GET">
-                  　<div id="search_field" class="input-group">
-                        <input  type="text" class="form-control" name="search_words"  placeholder="検索ワード入力。「,」でOR検索">
-                        <span class="input-group-btn">
-                        	<button type="submit" class="btn btn-default">検索</button>
-                        </span>
-                    </div>
-                </form>
+                
             </div>
             
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
+                 <form id="search-box" action="/microposts/search" method="GET">
+                      　<div id="search_field" class="input-group">
+                            <input  type="text" class="form-control" name="search_words"  placeholder=",でOR検索">
+                            <span class="input-group-btn">
+                            	<button type="submit" class="btn btn-default">Search</button>
+                            </span>
+                        </div>
+                    </form>
                     
-                    <li><a href="/usage">使い方</a></li>
+                    <li><a href="/usage">Usage</a></li>
                 @if (Auth::check())
                     <li><a href="/">All Cats Photos</a></li> 
                     <li>{!! link_to_route('microposts.all_map','All Photos Map') !!}</li>
@@ -38,11 +39,13 @@
                             <li>{!! link_to_route('logout.get', 'Logout') !!}</li>
                         </ul>
                     </li>
+                    
                 @else
                     <li>{!! link_to_route('signup.get', 'Signup') !!}</li>
                     <li>{!! link_to_route('login', 'Login') !!}</li>
                 @endif
                 </ul>
+                
             </div>
         </div>
     </nav>

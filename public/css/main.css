@@ -269,6 +269,6 @@ aside .col-xs-6 ,.col-md-4{
     font-size: 1.4rem;
 }
 
-/*#welcome-text h1 {*/
-/*    font-size: 1.4rem;*/
+/*@media all and (min-width: 768px){*/
+/*    #search-box {width:250px;}*/
 /*}*/
