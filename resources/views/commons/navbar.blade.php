@@ -4,7 +4,7 @@
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                     <span class="sr-only">Toggle navigation</span>
-                    ハンバーガーメニュー3本線
+                    <!--ハンバーガーメニュー3本線-->
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -39,7 +39,7 @@
                             </form>
                         </li>
                     </ul>
-    
+                    <!--右よりのボタンたち-->
                     <ul id="btns" class="nav navbar-nav navbar-right">
                         <li class="nav-item {{ Request::is('usage') ? 'activated' : '' }}"><a class="nav-link" href="/usage">Usage</a></li>
                         <li class="nav-item {{ Request::is('/') ? 'activated' : '' }}"><a class="nav-link" href="/">All Cats Photos</a></li> 
@@ -57,7 +57,7 @@
                      </ul>   
             </div><!-- /.collapse -->
             @else
-            <!--<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">-->
+            <!--<ログアウトした時のボタン>-->
                 <ul class="nav navbar-nav navbar-right">
                     <li class="nav-item {{ Request::is('usage') ? 'activated' : '' }}"><a href="/usage">Usage</a></li>
                     <li class="nav-item {{ Request::is('signup') ? 'activated' : '' }}">{!! link_to_route('signup.get', 'Signup', ['class' => 'nav-link']) !!}</li>

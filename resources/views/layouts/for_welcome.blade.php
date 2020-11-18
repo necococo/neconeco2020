@@ -47,7 +47,6 @@
         <!--javascript offの時の表示-->
         <noscript><p>このサイトではJavaScriptを使用しています</p></noscript>
         
-        <!--<script src="{{ secure_asset("js/navbar_action.js") }}" ></script>        -->
     </body>
     
 </html>
