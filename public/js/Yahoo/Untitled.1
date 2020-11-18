@@ -1,0 +1,111 @@
+複数マーカーを立てて全てのマーカーが範囲に入るような地図を表示させたい。
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no"/>
+
+        <title>NecoNeco</title>
+        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="{{ secure_asset('css/main.css') }}" media="all">
+
+
+        <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.10.0/jquery-ui.js"></script>
+        <script src="https://map.yahooapis.jp/js/V1/jsapi?appid={{ getenv('YAHOO_API_KEY') }}"></script>
+        <!--<script src="https://maps.googleapis.com/maps/api/js?v=3&key={{getenv('GOOGLE_MAPS_KEY')}}" async defer></script>  -->
+        
+    </head>
+    <body>
+<div class="allmap"  id="map"></div>
+
+@endsection
+
+<script>
+window.onload = function() {
+//スクロール禁止用関数
+function no_scroll(){
+//PC用
+var scroll_event = 'onwheel' in document ? 'wheel' : 'onmousewheel' in document ? 'mousewheel' : 'DOMMouseScroll';
+$(document).on(scroll_event,function(e){e.preventDefault();});
+//SP用
+$(document).on('touchmove.noScroll', function(e) {e.preventDefault();});
+}
+};
+
+window.addEventListener('load', function(){
+    // document.addEventListener('touchstart', {capture: true});
+    var markerData = JSON.parse(@json($data));//phpでjson化したものを再度配列に
+    var lat=0;
+    var lng=0;
+    var maxlat = lat;//最大緯度
+    var maxlng = lng;//最大経度
+    var minlat = lat;//最小緯度
+    var minlng = lng;//最小経度
+    
+    var ymap = new Y.Map("map");
+     //自動調整
+    
+    ymap.addControl( new Y.SliderZoomControl() );
+    ymap.addControl( new Y.LayerSetControl() );
+    ymap.addControl(new Y.SearchControl());
+    ymap.setConfigure('weatherOverlay', true);
+    
+    var markers=[];
+    for ( var i = 0 ; i < markerData.length ; i++ ) {
+        lat = markerData[i]['map_lat'];      
+        lng = markerData[i]['map_long'];
+        
+        if(maxlat<lat){maxlat=lat}else{maxlat=maxlat}
+        if(maxlng<lng){maxlng=lng}else{maxlng=maxlng}
+        if(minlat>lat){minlat=lat}else{minlat=minlat}
+        if(minlng>lng){minlng=lng}else{minlng=minlng}
+        
+        // image_path = markerData[i]['image_path'];
+        // search_tag = markerData[i]['search_tag'];
+        id = markerData[i]['id'];
+        console.log(id,lat, lng);
+        // markers.push(new Y.Marker(new Y.LatLng(lat,lng)));
+        var marker = new Y.Marker(new Y.LatLng(lat,lng));
+        ymap.addFeature(marker);
+    }    
+
+  
+     //北西端の座標を設定
+         var sw = new Y.LatLng(maxlat,minlng);
+         //東南端の座標を設定-->
+       var ne = new Y.LatLng(minlat,maxlng);
+       //範囲を設定-->
+    ymap.drawBounds(new Y.LatLngBounds(sw ,ne),Y.LayerSetId.NORMAL);
+   
+});
+    </body>
+</html>
+
+consol error
+jsapi?appid=dj00aiZpPUo0ZXpHYWpHOFJTYSZzPWNvbnN1bWVyc2VjcmV0Jng9ZDM-:573 Uncaught TypeError: Cannot read property 'lng' of undefined
+    at Object.MercatorProjection.fromLatLngToMeters (jsapi?appid=dj00aiZpPUo0ZXpHYWpHOFJTYSZzPWNvbnN1bWVyc2VjcmV0Jng9ZDM-:573)
+    at Object.MercatorProjection.fromLatLngToPixel (jsapi?appid=dj00aiZpPUo0ZXpHYWpHOFJTYSZzPWNvbnN1bWVyc2VjcmV0Jng9ZDM-:572)
+    at Y.Map.Map.fromLatLngToContainerPixel (jsapi?appid=dj00aiZpPUo0ZXpHYWpHOFJTYSZzPWNvbnN1bWVyc2VjcmV0Jng9ZDM-:390)
+    at Y.Map.Map.fromLatLngToDivPixel (jsapi?appid=dj00aiZpPUo0ZXpHYWpHOFJTYSZzPWNvbnN1bWVyc2VjcmV0Jng9ZDM-:392)
+    at Object.Layer.fromLatLngToDivPixel (jsapi?appid=dj00aiZpPUo0ZXpHYWpHOFJTYSZzPWNvbnN1bWVyc2VjcmV0Jng9ZDM-:833)
+    at Object.Marker.draw (jsapi?appid=dj00aiZpPUo0ZXpHYWpHOFJTYSZzPWNvbnN1bWVyc2VjcmV0Jng9ZDM-:627)
+    at Object.FeatureLayer.addFeature (jsapi?appid=dj00aiZpPUo0ZXpHYWpHOFJTYSZzPWNvbnN1bWVyc2VjcmV0Jng9ZDM-:842)
+    at Y.Map.Map.addFeature (jsapi?appid=dj00aiZpPUo0ZXpHYWpHOFJTYSZzPWNvbnN1bWVyc2VjcmV0Jng9ZDM-:380)
+    at maps:47
+MercatorProjection.fromLatLngToMeters @ jsapi?appid=dj00aiZpPUo0ZXpHYWpHOFJTYSZzPWNvbnN1bWVyc2VjcmV0Jng9ZDM-:573
+MercatorProjection.fromLatLngToPixel @ jsapi?appid=dj00aiZpPUo0ZXpHYWpHOFJTYSZzPWNvbnN1bWVyc2VjcmV0Jng9ZDM-:572
+Map.fromLatLngToContainerPixel @ jsapi?appid=dj00aiZpPUo0ZXpHYWpHOFJTYSZzPWNvbnN1bWVyc2VjcmV0Jng9ZDM-:390
+Map.fromLatLngToDivPixel @ jsapi?appid=dj00aiZpPUo0ZXpHYWpHOFJTYSZzPWNvbnN1bWVyc2VjcmV0Jng9ZDM-:392
+Layer.fromLatLngToDivPixel @ jsapi?appid=dj00aiZpPUo0ZXpHYWpHOFJTYSZzPWNvbnN1bWVyc2VjcmV0Jng9ZDM-:833
+Marker.draw @ jsapi?appid=dj00aiZpPUo0ZXpHYWpHOFJTYSZzPWNvbnN1bWVyc2VjcmV0Jng9ZDM-:627
+FeatureLayer.addFeature @ jsapi?appid=dj00aiZpPUo0ZXpHYWpHOFJTYSZzPWNvbnN1bWVyc2VjcmV0Jng9ZDM-:842
+Map.addFeature @ jsapi?appid=dj00aiZpPUo0ZXpHYWpHOFJTYSZzPWNvbnN1bWVyc2VjcmV0Jng9ZDM-:380
+(anonymous) @ maps:47
+load (async)
+(anonymous) @ maps:13
