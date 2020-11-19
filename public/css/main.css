@@ -54,7 +54,7 @@ ul {padding-left:0px;list-style: none;}
 
 
 
-/*#search{line-height:12px;}*/
+#search-box{padding: 0 11px;}
 
 /*@media all and (max-width: 768px){*/
 /*    #serach_field: {float:left;}*/
@@ -337,3 +337,5 @@ aside .col-xs-6 ,.col-md-4{
 /*.loop_wrap:hover {*/
 /*  animation-play-state: paused;*/
 /*}*/
+
+/*.navbar-nav {margin: 0;}*/

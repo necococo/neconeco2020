@@ -34,7 +34,12 @@
             </div>
          </div class="wrapper-end">
        
-         
+       
+       <!--歩く猫-->
+        <div class="loop_wrap">
+            <img class="cat_walk" style="position: relative;cursor: pointer;" src="https://hige-oji-s3-bucket.s3.amazonaws.com/neconeco2020/favicon/cat_walk2_small.gif">
+        </div>
+        
         <footer>
             <div class="" style="color:#777;">
              © 2020 Copyright KM

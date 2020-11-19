@@ -48,8 +48,10 @@
         <!--javascript offの時の表示-->
         <noscript><p>このサイトではJavaScriptを使用しています</p></noscript>
         
+        <!--ドロップダウンを押した時に他のボタンのアクティブクラスを取り除く-->
         <script src="{{ secure_asset("js/navbar_action.js") }}" ></script>
         
+        <!--JSで猫を歩かせるコード　重そうなのでCSSにした-->
         <!--<script>-->
         <!--    let cat_walks = document.getElementsByClassName("cat_walk");-->
             
