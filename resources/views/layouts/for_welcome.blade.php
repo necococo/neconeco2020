@@ -34,6 +34,7 @@
             </div>
          </div class="wrapper-end">
        
+
        
        <!--歩く猫-->
         <div class="loop_wrap">
@@ -42,12 +43,18 @@
         
         <footer>
             <div class="" style="color:#777;">
+
+         
+        <footer>
+            <div class="">
              © 2020 Copyright KM
             </div>
         </footer>
             
         <!--右クリック禁止-->
+
         <!--<script>document.oncontextmenu = function () {return false;}</script>-->
+
         
         <!--javascript offの時の表示-->
         <noscript><p>このサイトではJavaScriptを使用しています</p></noscript>

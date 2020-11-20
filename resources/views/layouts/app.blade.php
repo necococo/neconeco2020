@@ -31,6 +31,7 @@
             @include('commons.error_messages')
             @yield('content')
         </div>
+
         
         <div class="loop_wrap">
             <img class="cat_walk" style="position: relative;cursor: pointer;" src="https://hige-oji-s3-bucket.s3.amazonaws.com/neconeco2020/favicon/cat_walk2_small.gif">
@@ -38,16 +39,24 @@
         
         <footer>
             <div style="color:#777;">
+
+       
+        
+        <footer>
+            <div class="">
              © 2020 Copyright KM
             </div>
         </footer>
             
         <!--右クリック禁止-->
+
         <!--<script>document.oncontextmenu = function () {return false;}</script>-->
+
         
         <!--javascript offの時の表示-->
         <noscript><p>このサイトではJavaScriptを使用しています</p></noscript>
         
+
         <!--ドロップダウンを押した時に他のボタンのアクティブクラスを取り除く-->
         <script src="{{ secure_asset("js/navbar_action.js") }}" ></script>
         
@@ -66,6 +75,9 @@
         <!--     };-->
               
         <!--</script>-->
+
+        <script src="{{ secure_asset("js/navbar_action.js") }}" ></script>     
+
     </body>
     
 </html>

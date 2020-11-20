@@ -21,7 +21,11 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
             $table->string('user_image_path')->nullable()->default(null);
+<<<<<<< HEAD
             // $table->string('favo_photos_order')->nullable()->default(null);
+=======
+            $table->string('fovo_photos_order')->nullable()->default(null);
+>>>>>>> 47387a204ebce36358decc699d662246e8e0b4b4
         });
     }
 

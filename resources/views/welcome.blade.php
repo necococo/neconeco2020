@@ -6,7 +6,11 @@
         <div id="welcome" class="center jumbotron">
             <div id="welcome-text" style="text-align: center;">
                 <h1  style="font-weight: normal;">NecoNeco</h1>
+<<<<<<< HEAD
                 <p>〜猫が撮られた場所がわかるSNS〜</p>
+=======
+                <p>〜みつけた猫の画像と場所共有SNS〜</p>
+>>>>>>> 47387a204ebce36358decc699d662246e8e0b4b4
                 <p style="margin-bottom:20px;">猫かどうかはAIが判定するニャン</p>
                 {!! link_to_route('signup.get', 'Sign up now !', null, ['class' => 'btn btn-lg btn-transparent', 'id'=>'signup-btn']) !!}
             </div>
