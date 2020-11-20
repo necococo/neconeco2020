@@ -2,7 +2,7 @@
     <nav class="navbar navbar-default navbar-static-top">
         <div id="navbar" class="container-fluid">
             <div class="navbar-header">
-                
+                <!--タイトル-->
                 <a class="navbar-brand" href="/">NecoNeco</a>
     
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -63,10 +63,11 @@
             </div><!-- /.collapse -->
             @endif
             
-            <!--タイトルと猫のアニメ-->
-             <div class="loop_wrap">
+            <!--猫のアニメ-->
+            <div class="loop_wrap">
                 <img class="cat_walk" style="position: relative;cursor: pointer;" src="https://hige-oji-s3-bucket.s3.amazonaws.com/neconeco2020/favicon/cat_walk2_small.gif">
             </div>
+            
         </div><!-- /.container-fluid -->
     </nav>
 </header>

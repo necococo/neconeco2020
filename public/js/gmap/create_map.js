@@ -1,6 +1,45 @@
+// function handlePermission() {
+// // window.onload = function() {
+//   window.navigator.permissions.query({name:'geolocation'}).then(function(result) {
+//     if (result.state == 'granted') {
+//       var res = window.confirm("位置情報の取得を許可しますか？");
+//       // console.log(res);
+//       return res;
+      
+//       // geoBtn.style.display = 'inline';
+//     } else if (result.state == 'prompt') {
+//       var res = true;
+//       // console.log(res);
+//       return res;
+      
+//       // geolocationのコンファームが自動で出るはずなのでtrueを返して自動コンファームの判定にゆだねる
+//       // geoBtn.style.display = 'none';
+//       // navigator.geolocation.getCurrentPosition(revealPosition,positionDenied,geoSettings);
+//     } else if (result.state == 'denied') {
+//       var res = window.confirm("位置情報の取得を許可しますか？");
+//       // console.log(res);
+//       return res;
+      
+//       // geoBtn.style.display = 'inline';
+//     }
+//     // result.onchange = function() {
+//     //   report(result.state);
+//     // }
+//   });
+// }
+
+// function report(state) {
+//   console.log('Permission ' + state);
+// }
+
+
+
+
+
 function initMap() { 
   // window.navigatorオブジェクトの取得  
-    
+    // var remind = handlePermission();
+    // console.log(remind);
     if (window.navigator.geolocation) {  
             // 位置情報の取得  
             const pos_options={                         
@@ -61,3 +100,5 @@ function failureCallback(error) {
       window.alert(err_msg);
       //デバッグ用→　document.getElementById("show_result").innerHTML = error.message;
 }  
+
+

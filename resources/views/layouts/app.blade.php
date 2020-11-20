@@ -13,6 +13,7 @@
         <link rel="apple-touch-icon" href="https://hige-oji-s3-bucket.s3.amazonaws.com/neconeco2020/favicon/apple-touch-icon.png" sizes="180x180">
         <!--<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">        <script src="https://code.jquery.com/jquery-3.3.1.js"></script>-->
         
+        <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
         <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>-->
         <!--<script src="https://code.jquery.com/ui/1.10.0/jquery-ui.js"></script>-->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -31,16 +32,11 @@
             @include('commons.error_messages')
             @yield('content')
         </div>
-
         
+        <!--歩く猫-->
         <div class="loop_wrap_reverse">
             <img class="cat_walk" style="position: relative;cursor: pointer;" src="https://hige-oji-s3-bucket.s3.amazonaws.com/neconeco2020/favicon/cat_walk2_small_reverse.gif">
         </div>
-        
-        <footer>
-            <div style="color:#777;">
-
-       
         
         <footer>
             <div class="">

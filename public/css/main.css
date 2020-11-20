@@ -312,32 +312,44 @@ aside .col-xs-6 ,.col-md-4{
   /*overflow: hidden;*/
 }
 
-.loop_wrap, .loop_wrap_reverse img {
+.loop_wrap, img {
   /*position: absolute;*/
   width: auto;
   height: 100%;
-  
 }
 
 .loop_wrap{
   animation: moveX 13s linear infinite;
 }
 
-.loop_wrap_reverse{
-  animation: moveX_reverse 13s linear infinite;
-}
+
 
 @keyframes moveX {
   from { margin-left: 0px; }
   to { margin-left: 100vw; }
 }
 
-
-
-
-@keyframes moveX_reverse {
-  from { margin-left: 100vw; }
-  to { margin-left: 0px; }
+.loop_wrap_reverse img {
+  /*position: absolute;*/
+  width: auto;
+  height: 100%;
+  padding-left:100%;
 }
 
 
+@keyframes moveX_reverse {
+  0% { transform: translateX(0)}
+   100% { transform: translateX(-100%)}
+}
+
+
+.loop_wrap_reverse{
+  animation: moveX_reverse 13s linear infinite;
+}
+
+/*.loop_wrap_reverse{*/
+/*  animation: moveX 13s linear infinite;*/
+/*}*/
+.loop_wrap:hover,.loop_wrap_reverse:hover {
+    animation-play-state:paused;
+}
