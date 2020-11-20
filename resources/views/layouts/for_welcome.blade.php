@@ -11,9 +11,10 @@
         <link rel="stylesheet" type="text/css" href="{{ secure_asset('css/main.css') }}" media="all">
         <link rel="icon" type="image/png" href="https://hige-oji-s3-bucket.s3.amazonaws.com/neconeco2020/favicon/apple-touch-icon.png"">
         <link rel="apple-touch-icon" href="https://hige-oji-s3-bucket.s3.amazonaws.com/neconeco2020/favicon/apple-touch-icon.png" sizes="180x180">
-        <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+        <!--<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">-->
+        
         <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+        <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>-->
         <!--<script src="https://code.jquery.com/ui/1.10.0/jquery-ui.js"></script>-->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         
@@ -37,8 +38,8 @@
 
        
        <!--歩く猫-->
-        <div class="loop_wrap">
-            <img class="cat_walk" style="position: relative;cursor: pointer;" src="https://hige-oji-s3-bucket.s3.amazonaws.com/neconeco2020/favicon/cat_walk2_small.gif">
+        <div class="loop_wrap_reverse">
+            <img class="cat_walk" style="position: relative;cursor: pointer;" src="https://hige-oji-s3-bucket.s3.amazonaws.com/neconeco2020/favicon/cat_walk2_small_reverse.gif">
         </div>
         
         <footer>

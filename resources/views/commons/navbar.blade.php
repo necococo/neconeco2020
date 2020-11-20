@@ -39,8 +39,8 @@
                     <!--右よりのボタンたち-->
                     <ul id="btns" class="nav navbar-nav navbar-right">
                         <li class="nav-item {{ Request::is('usage') ? 'activated' : '' }}"><a class="nav-link" href="/usage">Usage</a></li>
-                        <li class="nav-item {{ Request::is('/') ? 'activated' : '' }}"><a class="nav-link" href="/">All Cats Photos</a></li> 
-                        <li class="nav-item {{ Request::is('microposts/all_map') ? 'activated' : '' }}">{!! link_to_route('microposts.all_map','All Photos Map', ['class' => 'nav-link']) !!}</li>
+                        <li class="nav-item {{ Request::is('/') ? 'activated' : '' }}"><a class="nav-link" href="/">Cat Photos</a></li> 
+                        <li class="nav-item {{ Request::is('microposts/all_map') ? 'activated' : '' }}">{!! link_to_route('microposts.all_map','Photos Map', ['class' => 'nav-link']) !!}</li>
                         <li class="nav-item {{ Request::is('users') ? 'activated' : '' }}">{!! link_to_route('users.index','Other Users', ['class' => 'nav-link']) !!}</li>
                         <li class="nav-item {{ Request::is('microposts/create') ? 'activated' : '' }}">{!! link_to_route('microposts.create','New Post', ['class' => 'nav-link']) !!}</li>
                         <li id="dropdown1" class="dropdown">

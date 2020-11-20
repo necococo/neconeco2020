@@ -45,7 +45,7 @@
                 <div class="form-data">
                     <br>
                     {!! Form::open(['route' => ['microposts.store'], 'method' => 'POST', 'files' => true]) !!}
-                        {!! Form::label('file', '猫写真を選択（5MB以下, AIによる猫判定あり）') !!}
+                        {!! Form::label('file', '猫の画像を選択（5MB以下, AIによる猫判定あり）') !!}
                         {!! Form::file('file', null, ['class' => 'form-control']) !!}  
                         <br> 
                         <div class="form-group">
