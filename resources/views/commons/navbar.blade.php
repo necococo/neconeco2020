@@ -65,11 +65,7 @@
             
             <!--タイトルと猫のアニメ-->
              <div class="loop_wrap">
-                <ul>
-                   <li> 
-                        <img class="cat_walk" style="position: relative;cursor: pointer;" src="https://hige-oji-s3-bucket.s3.amazonaws.com/neconeco2020/favicon/cat_walk2_small.gif">
-                    </li>
-                </ul>
+                <img class="cat_walk" style="position: relative;cursor: pointer;" src="https://hige-oji-s3-bucket.s3.amazonaws.com/neconeco2020/favicon/cat_walk2_small.gif">
             </div>
         </div><!-- /.container-fluid -->
     </nav>
