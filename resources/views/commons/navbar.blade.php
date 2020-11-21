@@ -1,27 +1,31 @@
 <header>
     <nav class="navbar navbar-default navbar-static-top">
         <div id="navbar" class="container-fluid">
+           
             <div class="navbar-header">
+                
                 <!--タイトル-->
                 <a class="navbar-brand" href="/">NecoNeco</a>
-    
+                
+                 <!--猫のアニメ-->
+                <div class="loop_wrap">
+                    <p><img class="cat_walk" style="position: relative;cursor: pointer;" src="https://hige-oji-s3-bucket.s3.amazonaws.com/neconeco2020/favicon/cat_walk2_small.gif"></p>
+                </div>
+                
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                
                 <span class="sr-only">Toggle navigation</span>
                     <!--ハンバーガーメニュー3本線-->
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                </div><!-- /.loop_wrap -->     
             </div><!-- /.navbar-header -->  
             
-             
-                
-                    
+            
             
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                  
-                
                  @if(Auth::check())
                     <ul class="nav navbar-nav">
                     <!--検索バー-->
@@ -62,11 +66,6 @@
                 </ul>
             </div><!-- /.collapse -->
             @endif
-            
-            <!--猫のアニメ-->
-            <div class="loop_wrap">
-                <img class="cat_walk" style="position: relative;cursor: pointer;" src="https://hige-oji-s3-bucket.s3.amazonaws.com/neconeco2020/favicon/cat_walk2_small.gif">
-            </div>
             
         </div><!-- /.container-fluid -->
     </nav>

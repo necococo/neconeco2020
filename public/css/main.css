@@ -306,50 +306,45 @@ aside .col-xs-6 ,.col-md-4{
   display: flex;
   /*align-items: center;*/
   /*justify-content: center;*/
-  /*position: relative;*/
+  position: relative;
   width: 100vw;
   height: 50px;
   /*overflow: hidden;*/
 }
 
-.loop_wrap, img {
-  /*position: absolute;*/
+.loop_wrap,.loop_wrap_reverse p {
+  position: absolute;
   width: auto;
-  height: 100%;
+  height: 50px;
+  /*margin:0;*/
+  /*padding:0;*/
 }
 
-.loop_wrap{
-  animation: moveX 13s linear infinite;
-}
 
 
 
 @keyframes moveX {
-  from { margin-left: 0px; }
-  to { margin-left: 100vw; }
+  0% { transform: translateX(0px)}
+   100% { transform: translateX(100vw)}
 }
 
-.loop_wrap_reverse img {
-  /*position: absolute;*/
-  width: auto;
-  height: 100%;
-  padding-left:100%;
-}
 
 
 @keyframes moveX_reverse {
-  0% { transform: translateX(0)}
-   100% { transform: translateX(-100%)}
+  0% { transform: translateX(100vw)}
+   100% { transform: translateX(0)}
+  /*from { margin-left: 100vw; }*/
+  /*to { margin-left: 0px; }*/
 }
 
+.loop_wrap p{
+  animation: moveX 13s linear infinite;
+}
 
-.loop_wrap_reverse{
+.loop_wrap_reverse p{
   animation: moveX_reverse 13s linear infinite;
 }
 
-/*.loop_wrap_reverse{*/
-/*  animation: moveX 13s linear infinite;*/
-/*}*/
-.loop_wrap:hover,.loop_wrap_reverse:hover {
+.loop_wrap p:hover,.loop_wrap_reverse p:hover {
     animation-play-state:paused;
 }

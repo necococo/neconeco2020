@@ -28,14 +28,17 @@
         
         @include('commons.navbar')
         
+        
+            
         <div class="container">
             @include('commons.error_messages')
             @yield('content')
-        </div>
         
+        </div>
+       
         <!--歩く猫-->
         <div class="loop_wrap_reverse">
-            <img class="cat_walk" style="position: relative;cursor: pointer;" src="https://hige-oji-s3-bucket.s3.amazonaws.com/neconeco2020/favicon/cat_walk2_small_reverse.gif">
+            <p><img class="cat_walk" style="position: relative;cursor: pointer;" src="https://hige-oji-s3-bucket.s3.amazonaws.com/neconeco2020/favicon/cat_walk2_small_reverse.gif"></p>
         </div>
         
         <footer>
