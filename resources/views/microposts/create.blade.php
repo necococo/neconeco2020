@@ -38,6 +38,7 @@
             <hr>
             
             <h4 class="panel-title">Upload data</h4>
+            <P>位置情報を許可すると場所も共有されます。許可しなくても使えます。</P>
             <hr>
             <div class="panel-body">
                 
@@ -56,7 +57,7 @@
                         {!! Form::hidden('lng', null, ['id' => 'lng']) !!} 
                         
                         <p><span class="bold">現在位置   　</span><span id="location"></span>（精度:半径 <span id="accuracy"></span> m）</p>
-                        <P>位置情報を許可すると場所も共有されます。許可しなくても使えます。</P>
+                        
                         <p id="error_message"></p>
                         <!--マップ-->
                         <div id="map"></div>
