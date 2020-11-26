@@ -11,25 +11,30 @@
   　<!--//phpでjson化したものを再度配列に-->
     let markerData = JSON.parse(@json($microposts));
     <!--console.log(markerData);-->
-    let lat= 0;
-    let lng= 0;
-    let maxlat = lat;
+    let ja_maxlat = 45.5;
+    let ja_maxlng = 154;
+    let ja_minlat = 20;
+    let ja_minlng = 122;
+    
     <!--//最大緯度-->
-    let maxlng = lng;
+    let maxlat = ja_maxlat;
     <!--//最大経度-->
-    let minlat = lat;
+    let maxlng = ja_maxlng;
     <!--//最小緯度-->
-    let minlng = lng;
+    let minlat = ja_minlat;
     <!--//最小経度-->
-    <!--//東京駅を中心にした-->
+    let minlng = ja_minlng;
+    
+    
+    <!--//東京駅を中心にしたけど-->
     let center_location = {lat:35.681167, lng: 139.767052}; 
-    let options = { zoom: 14, center: center_location, disableDoubleClickZoom: true }; 
+    let options = { zoom: 10, center: center_location, disableDoubleClickZoom: true }; 
     let map = new google.maps.Map(document.getElementById('all_map'), options);
     let markers=[];
     
     for ( let i = 0 ; i < markerData.length ; i++ ) {
-      lat =  parseFloat(markerData[i]['map_lat']);      
-      lng =  parseFloat(markerData[i]['map_lng']);
+      let lat =  parseFloat(markerData[i]['map_lat']);      
+      let lng =  parseFloat(markerData[i]['map_lng']);
       let id = markerData[i]['id'];
       
       if(maxlat<lat){maxlat=lat}else{maxlat=maxlat}
@@ -49,7 +54,7 @@
     let ne = new google.maps.LatLng(minlat, maxlng);
     <!--//範囲を設定-->
     let bounds = new google.maps.LatLngBounds(sw, ne);
-    <!--//自動調整-->
+    <!--//マップサイズ自動調整-->
     map.fitBounds(bounds, 5);
     
   }
